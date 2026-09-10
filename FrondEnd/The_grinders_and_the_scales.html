@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The grinders and the scales</title>
+</head>
+<body style="background-color:rgba(52, 21, 15);">
+    <form>
+        
+    <h1 style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace;">The grinders and the scales</h1>
+    <p style="color:rgb(234, 206, 170); font-family: perpentua">This is a paragraph.</p>
+
+
+    </form>
+
+    <button id="Reserve1">Reserve grinder 1</button>
+    <button id="Reserve2">Reserve grinder 2</button>
+    <button id="Reserve3">Reserve grinder 3</button>
+    <button id="Reserve4">Reserve scale 1</button>
+    <button id="Reserve5">Reserve scale 2</button>
+
+    <p id="Order" style="color:rgb(234, 206, 170); font-family: perpentua"></p>
+
+    <script>
+      const button1 = document.querySelector("#Reserve1");
+      const button2 = document.querySelector("#Reserve2");
+      const button3 = document.querySelector("#Reserve3");
+      const button4 = document.querySelector("#Reserve4");
+      const button5 = document.querySelector("#Reserve5");
+      const order = document.querySelector("#Order");
+
+      button1.addEventListener("click", () => {
+        order.textContent = `Grinder 1 reserved`;
+      });
+      button2.addEventListener("click", () => {
+        order.textContent = `Grinder 2 reserved`;
+      });
+      button3.addEventListener("click", () => {
+        order.textContent = `Grinder 3 reserved`;
+      });
+      button4.addEventListener("click", () => {
+        order.textContent = `Scale 1 reserved`;
+      });
+      button5.addEventListener("click", () => {
+        order.textContent = `Scale 2 reserved`;
+      });
+    </script>
+    
+</body>
+</html>
