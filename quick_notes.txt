@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Mijn eerste website</title>
+</head>
+
+<body>
+
+<h1>My First Heading</h1>
+<h2>h2 heading</h2>
+<h3>h3 heading</h3>
+<h4>h4 heading</h4>
+<h5>h5 heading</h5>
+
+<!-- hr staat voor een horizontale lijn en br voor een enter -->
+
+<hr>
+<br>
+
+<p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quasi accusamus porro sapiente dolorem esse, ullam, consequuntur quisquam tenetur explicabo libero voluptatibus repellat vel iusto natus, culpa repudiandae nostrum hic!
+</p>
+
+<!-- THIS IS A COMMENT -->
+
+<form action="verwerk.php" method="POST">
+
+```
+<!-- 1. Naam -->
+<div>
+    <label for="naam">Naam:</label>
+    <input type="text" id="naam" name="naam" placeholder="SpongeBob" required>
+</div>
+
+<!-- 2. Wachtwoord -->
+<div>
+    <label for="wachtwoord">Wachtwoord:</label>
+    <input type="password" id="wachtwoord" name="wachtwoord" required>
+</div>
+
+<!-- 3. E-mailadres -->
+<div>
+    <label for="email">E-mailadres:</label>
+    <input type="email" id="email" name="email" placeholder="spongebob@gmail.com" required>
+</div>
+
+<!-- 4. Telefoonnummer -->
+<div>
+    <label for="telefoon">Telefoonnummer:</label>
+    <input
+        type="tel"
+        id="telefoon"
+        name="telefoon"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        placeholder="123-456-7890"
+    >
+</div>
+
+<!-- 5. Leeftijd -->
+<div>
+    <label for="leeftijd">Leeftijd:</label>
+    <input
+        type="number"
+        id="leeftijd"
+        name="leeftijd"
+        min="1"
+        max="120"
+        placeholder="20"
+    >
+</div>
+
+<!-- 6. Keuzerondjes -->
+<div>
+    <p>Kies een aanhef:</p>
+
+    <input type="radio" id="mister" name="aanhef" value="Mister">
+    <label for="mister">Dhr.</label>
+
+    <input type="radio" id="miss" name="aanhef" value="Miss">
+    <label for="miss">Mevr.</label>
+</div>
+
+<!-- 7. Dropdown-menu betaalmethode -->
+<div>
+    <label for="betaalmethode">Betaalmethode:</label>
+
+    <select id="betaalmethode" name="betaalmethode">
+        <option value="visa">Visa</option>
+        <option value="mastercard">MasterCard</option>
+        <option value="paypal">PayPal</option>
+    </select>
+</div>
+
+<!-- 8. Groter tekstvak -->
+<div>
+    <label for="opmerking">Opmerking of vraag:</label>
+
+    <textarea
+        id="opmerking"
+        name="opmerking"
+        rows="3"
+        cols="25"
+        placeholder="Typ hier uw bericht..."
+    ></textarea>
+</div>
+
+<!-- 9. Favoriete kleur -->
+<div>
+    <label for="kleur">Favoriete kleur:</label>
+
+    <select id="kleur" name="kleur">
+        <option value="rood">Rood</option>
+        <option value="blauw">Blauw</option>
+        <option value="groen">Groen</option>
+    </select>
+</div>
+
+<!-- Submit-knop -->
+<div>
+    <input type="submit" value="Verzenden">
+</div>
+
+<!--
+    Om de HTML-code van een webpagina te bekijken:
+    CTRL + U
+
+    Om de HTML en CSS van een webpagina te bekijken:
+    F12
+-->
+```
+
+</form>
+
+</body>
+</html>

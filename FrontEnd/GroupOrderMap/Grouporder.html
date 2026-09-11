@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Orders</title>
+</head>
+<!-- als je de wallpaper aan de achterkant aan wil passen dat moet je dat buiten de body zelf doen maar wel als body noemen zodat het wel in de achtergornd staat. -->
+<style>
+    body {
+        /* dit is gewoon zovan ga 1 stap terug zo maak je een in de body kind of comment */ 
+        background-image: url('../Afbeeldingen/flow.jpg'); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+<body >
+    
+    <!-- om iets bold te maken gebruik je <strong> -->
+    <!--  style="color:rgb(234, 206, 170);  -->
+        
+    <h1 style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace;">Group Orders</h1>
+    <p style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace;">Order coffee together with other members of the club!</p>
+
+    <hr>
+    <br>
+    <h2 style="color:rgb(234, 206, 170);font-family: 'Courier New', Courier, monospace;"> MENU</h>
+    <!-- div is eigenlijk gewoon een soort textblok die je kan maken. the division.-->
+    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+
+        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">opties</h4>
+        
+        <!-- maak hier iets om ervoor te zorgen dat je naar een volgende pagina toe kan gaan om alle andere grouporders te bekijken, maak het als lijst keuze. -->
+        <!-- button maken of iets om de volgende order te kunnen maken hieronder. -->
+        <!-- open order kunenn wijzigen door bijvb iets toe te voegen / wijzigen zolang het open staat-->
+        <!-- alleen closed orders te kunnen zien. -->
+        <!-- Een open order annuleren (alleen starter/committee memeber met juiste permissions)-->
+
+        <ul style="color: rgb(52, 21, 15); font-size: 20px; font-family: 'Courier New', Courier, monospace; line-height: 1.8;">
+            <li><a href="AllGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">All Orders</a></li>
+            <li><a href="OpenGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">Open Orders</a></li>
+            <li><a href="ClosedGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">Closed Orders</a></li>
+            <li>Status Open Orders</li>
+        </ul>
+
+        <!-- voor de nieuwe order ook om een optie te hebben om dat te doen ofc-->
+         <a href="NewGroupOrder.html" style="background-color:rgb(52, 21, 15); color:rgb(234, 206, 170); font-family:'Courier New', Courier, monospace; font-size:16px; padding:10px 20px; text-decoration:none; border-radius:5px;">+ Start New Order</a>
+
+
+    </div>
+
+    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+
+        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">All Orders</h4>
+        
+        <p style=" color:rgb(52, 21, 15); font-size:15px; font-family:'Courier New', Courier, monospace; line-height:1; font-size: 17px; "> Take a look at all group orders that have been made. 
+        <br> 
+        You can explore the orders and sort them by date, costs or members. </p>
+
+        <a href="AllGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15); font-size: 12px; font-family:'Courier New', Courier, monospace;">View All Orders &#8594;</a>
+
+    </div>
+
+
+    
+</body>
+</html>
