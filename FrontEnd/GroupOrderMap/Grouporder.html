@@ -19,8 +19,112 @@
         color: rgb(234, 206, 170);
     }
 
-    #darkercolor{
-        color:rgb(52, 21, 15); font-size:15px; font-family:Courier New, Courier, monospace; line-height:1.6;
+    #darkercolor {
+        color: rgb(52, 21, 15);
+        font-size: 15px;
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+    }
+
+    .h1-orders{
+        color: rgb(234, 206, 170);
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .h2-orders {
+        color: rgb(234, 206, 170);
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .h4-orders {
+        color: rgb(52, 21, 15);
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .order-box {
+        background-color: rgb(234, 206, 170);
+        padding: 20px;
+        margin: 50px;
+    }
+
+    
+
+    ul {
+        color: rgb(52, 21, 15);
+        font-size: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.8;
+    }
+
+    li a {
+        color: rgb(52, 21, 15);
+    }
+
+    .new-order {
+        background-color: rgb(52, 21, 15);
+        color: rgb(234, 206, 170);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .order-text {
+        color: rgb(52, 21, 15);
+        font-size: 17px;
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+    }
+
+    .view-link {
+        color: rgb(52, 21, 15);
+        font-size: 12px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: rgb(52, 21, 15);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: left;
+        padding: 8px;
+    }
+
+    td {
+        padding: 8px;
+    }
+
+    .footer {
+        color: rgb(234, 206, 170);
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+    }
+
+
+    .glow {
+    font-size: 80px;
+    color: rgb(234, 206, 170);
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes glow 
+    {
+        from {
+            text-shadow: 0 0 10px rgb(234, 206, 170), 0 0 20px rgb(234, 206, 170), 0 0 30px rgb(52, 21, 15), 0 0 40px rgb(52, 21, 15), 0 0 50px rgb(52, 21, 15), 0 0 60px rgb(52, 21, 15), 0 0 70px rgb(52, 21, 15);
+        }
+        
+        to {
+            text-shadow: 0 0 20px rgb(234, 206, 170), 0 0 30px rgb(52, 21, 15), 0 0 40px rgb(52, 21, 15), 0 0 50px rgb(52, 21, 15), 0 0 60px rgb(52, 21, 15), 0 0 70px rgb(52, 21, 15), 0 0 80px rgb(52, 21, 15);
+        }
     }
 </style>
 <body >
@@ -28,16 +132,16 @@
     <!-- om iets bold te maken gebruik je <strong> -->
     <!--  style="color:rgb(234, 206, 170);  -->
         
-    <h1 style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace;">Group Orders</h1>
-    <p style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace;">Order coffee together with other members of the club!</p>
+    <h1 class="glow">Group Orders</h1>
+    <p class="intro">Order coffee together with other members of the club!</p>
 
     <hr>
     <br>
-    <h2 style="color:rgb(234, 206, 170);font-family: 'Courier New', Courier, monospace;"> MENU</h>
+    <h2 class="h2-orders"> MENU</h>
     <!-- div is eigenlijk gewoon een soort textblok die je kan maken. the division.-->
-    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+    <div class="order-box">
 
-        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">opties</h4>
+        <h4 class="h4-orders">opties</h4>
         
         <!-- maak hier iets om ervoor te zorgen dat je naar een volgende pagina toe kan gaan om alle andere grouporders te bekijken, maak het als lijst keuze. -->
         <!-- button maken of iets om de volgende order te kunnen maken hieronder. -->
@@ -45,16 +149,15 @@
         <!-- alleen closed orders te kunnen zien. -->
         <!-- Een open order annuleren (alleen starter/committee memeber met juiste permissions)-->
 
-        <ul style="color: rgb(52, 21, 15); font-size: 20px; font-family: 'Courier New', Courier, monospace; line-height: 1.8;">
-            <li><a href="AllGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">All Orders</a></li>
-            <li><a href="OpenGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">Open Orders</a></li>
-            <li><a href="ClosedGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);">Closed Orders</a></li>
+        <ul>
+            <li><a href="AllGroupOrders.html" target="_blank">All Orders</a></li>
+            <li><a href="OpenGroupOrders.html" target="_blank">Open Orders</a></li>
+            <li><a href="ClosedGroupOrders.html" target="_blank">Closed Orders</a></li>
             <li>Status Open Orders</li>
         </ul>
 
         <!-- voor de nieuwe order ook om een optie te hebben om dat te doen ofc-->
-         <a href="NewGroupOrder.html" style="background-color:rgb(52, 21, 15); color:rgb(234, 206, 170); font-family:'Courier New', Courier, monospace; font-size:16px; padding:10px 20px; text-decoration:none; border-radius:5px;">+ Start New Order</a>
-
+         <a href="NewGroupOrder.html" class="new-order">+ Start New Order</a>
 
     </div>
 
