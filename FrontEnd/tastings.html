@@ -3,9 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tastings</title>
 </head>
 <body>
     
+<body style="background-color: rgba(52, 21, 15); color: rgb(234, 206, 170); font-family: 'Courier New', Courier, monospace; margin: 24px;">
+
+    <header>
+        <p><a href="../index.html" style="color: rgb(234, 206, 170);">&larr; Back to Main Menu</a></p>
+        <h1 style="text-align: center;">Coffee Tastings</h1>
+        <hr style="border-color: rgb(110, 68, 55);">
+    </header>
+
+    <main>
+        <!-- sign up for future tastings -->
+        <section>
+            <h2>Upcoming Tasting Session</h2>
+            <article style="border: 1px solid rgb(110, 68, 55); padding: 16px; border-radius: 6px;">
+                <h3>First Tasting Cup</h3>
+                <p><strong>Host:</strong> Mo</p>
+                <p><strong>Date:</strong> September 13, 2026</p>
+                <p><strong>Capacity:</strong> 6 seats (4 confirmed)</p>
+
+                <h4>Confirmed Attendees:</h4>
+                <ol>
+                    <li>Mo (Host)</li>
+                    <li>Aimee</li>
+                    <li>Daan</li>
+                    <li>Fernando</li>
+                </ol>
+
+                <p><strong>Waiting List:</strong> None yet</p>
+
+                <button id="signup-btn" type="button">Sign up for a seat</button>
+                <p id="signup-status" style="font-weight: bold;"></p>
+            </article>
+        </section>
+
+        <hr style="border-color: rgb(110, 68, 55); margin: 30px 0;">
+
+        <!--  hosting a tasting -->
+        <section>
+            <h2>Host a Tasting</h2>
+            <p>Schedule a blind cupping session in the back room.</p>
+
+            <form style="border: 1px solid rgb(110, 68, 55); padding: 16px; border-radius: 6px;">
+                <p>
+                    <label for="tasting-title">Title:</label><br>
+                    <input type="text" id="tasting-title" placeholder="e.g. FLEX YOUR BEANS CUP" size="30">
+                </p>
+
+                <p>
+                    <label for="tasting-date">Date &amp; Time:</label><br>
+                    <input type="datetime-local" id="tasting-date">
+                </p>
+
+                <p>
+                    <label for="tasting-cap">Capacity (Seats):</label><br>
+                    <input type="number" id="tasting-cap" min="2" max="12" value="6">
+                </p>
+
+                <button id="create-btn" type="button">Announce Tasting</button>
+                <p id="create-status" style="font-weight: bold;"></p>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const signupBtn = document.querySelector("#signup-btn");
+        const signupStatus = document.querySelector("#signup-status");
+        const createBtn = document.querySelector("#create-btn");
+        const createStatus = document.querySelector("#create-status");
+
+        signupBtn.addEventListener("click", () => {
+            signupStatus.textContent = "Seat confirmed! You are #5 on the list.";
+        });
+
+        createBtn.addEventListener("click", () => {
+            const title = document.querySelector("#tasting-title").value || "New Tasting";
+            createStatus.textContent = `Tasting "${title}" announced successfully!`;
+        });
+    </script>
+
 </body>
 </html>
