@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tastings</title>
+    <title>Zetsel - Coffee Tastings</title>
+    <!-- LINK YOUR CSS FILE HERE: Adjust ../ if styles.css is one folder up -->
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
 </head>
-<body style="background-color: rgba(52, 21, 15); color: rgb(234, 206, 170); font-family: 'Courier New', Courier, monospace; margin: 24px;">
+<body>
 
     <header>
-        <p><a href="../index.html" style="color: rgb(234, 206, 170);">&larr; Back to Main Menu</a></p>
-        <h1 style="text-align: center;">Coffee Tastings</h1>
-        <hr style="border-color: rgb(110, 68, 55);">
+        <p><a href="../../index.html" class="back-link">&larr; Back to Main Menu</a></p>
+        <h1>Coffee Tastings</h1>
+        <hr>
+        <!-- Corrected image relative path with descriptive alt text -->
+        <img src="../Afbeeldingen/coffee.jpg" alt="A steaming cup of freshly brewed pour-over coffee" class="banner-image">
     </header>
 
     <main>
-        <!-- sign up for future tastings -->
+        <!-- Section: Sign up for upcoming tastings -->
         <section>
             <h2>Upcoming Tasting Session</h2>
-            <article style="border: 1px solid rgb(110, 68, 55); padding: 16px; border-radius: 6px;">
-                <h3>First Tasting Cup</h3>
-                <p><strong>Host:</strong> Mo</p>
-                <p><strong>Date:</strong> September 13, 2026</p>
-                <p><strong>Capacity:</strong> 6 seats (4 confirmed)</p>
+            
+            <article class="card">
+                <header>
+                    <h3>First Tasting Cup</h3>
+                    <p><strong>Host:</strong> Mo</p>
+                    <p><strong>Date:</strong> September 13, 2026</p>
+                    <p><strong>Capacity:</strong> 6 seats (4 confirmed)</p>
+                </header>
 
                 <h4>Confirmed Attendees:</h4>
                 <ol>
@@ -33,36 +40,36 @@
 
                 <p><strong>Waiting List:</strong> None yet</p>
 
-                <button id="signup-btn" type="button">Sign up for a seat</button>
-                <p id="signup-status" style="font-weight: bold;"></p>
+                <button id="signup-btn" type="button" class="button-primary">Sign up for a seat</button>
+                <p id="signup-status" class="status-message"></p>
             </article>
         </section>
 
-        <hr style="border-color: rgb(110, 68, 55); margin: 30px 0;">
+        <hr>
 
-        <!--  hosting a tasting -->
+        <!-- Section: Host a tasting -->
         <section>
             <h2>Host a Tasting</h2>
             <p>Schedule a blind cupping session in the back room.</p>
 
-            <form style="border: 1px solid rgb(110, 68, 55); padding: 16px; border-radius: 6px;">
-                <p>
-                    <label for="tasting-title">Title:</label><br>
-                    <input type="text" id="tasting-title" placeholder="e.g. FLEX YOUR BEANS CUP" size="30">
-                </p>
+            <form class="card">
+                <div class="form-group">
+                    <label for="tasting-title">Title:</label>
+                    <input type="text" id="tasting-title" class="form-input" placeholder="e.g. FLEX YOUR BEANS CUP" size="30">
+                </div>
 
-                <p>
-                    <label for="tasting-date">Date &amp; Time:</label><br>
-                    <input type="datetime-local" id="tasting-date">
-                </p>
+                <div class="form-group">
+                    <label for="tasting-date">Date &amp; Time:</label>
+                    <input type="datetime-local" id="tasting-date" class="form-input">
+                </div>
 
-                <p>
-                    <label for="tasting-cap">Capacity (Seats):</label><br>
-                    <input type="number" id="tasting-cap" min="2" max="12" value="6">
-                </p>
+                <div class="form-group">
+                    <label for="tasting-cap">Capacity (Seats):</label>
+                    <input type="number" id="tasting-cap" class="form-input" min="2" max="12" value="6">
+                </div>
 
-                <button id="create-btn" type="button">Announce Tasting</button>
-                <p id="create-status" style="font-weight: bold;"></p>
+                <button id="create-btn" type="button" class="button-primary">Announce Tasting</button>
+                <p id="create-status" class="status-message"></p>
             </form>
         </section>
     </main>

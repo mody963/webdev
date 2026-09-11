@@ -1,70 +1,156 @@
+/*A few rules of thumb for naming classes
+
+I'll keep this short.
+
+    Lowercase. Use dashes between words. Don't mix in camelCase or underscores.
+    Class names cannot start with a number. .4-warnings is not a valid selector. (Numbers anywhere else in the name are fine.)
+    Name things by what they are, not what they look like. .warning survives a redesign. .red-text does not.
+    Don't call your container .container if you can call it .product-card or .sidebar. Generic names collide.
+    Be consistent across the whole project. If one thing is .user-avatar, the next thing should not be .userPhoto.
+    Use one language. Mixing English and Dutch class names in the same file (.overzicht next to .box) is bad.
+*/
+
+
+
+/* SHARED DESIGN TOKENS (CSS Variables) */
+:root {
+  /* Brand Palette */
+  --color-bg: rgb(52, 21, 15);           /* Dark coffee brown */
+  --color-surface: rgb(75, 32, 24);      /* Card / Container brown */
+  --color-accent: rgb(234, 206, 170);    /* Cream / Champagne */
+  --color-border: rgb(110, 68, 55);      /* Muted line border */
+
+  /* Typography */
+  --font-family-base: 'Courier New', Courier, monospace;
+
+  /* Spacing Scale (sm, md, lg) */
+  --space-small: 8px;
+  --space-medium: 16px;
+  --space-large: 24px;
+}
+
+/* BASE RESETS & DEFAULTS */
 body {
-    background-image: url('../Afbeeldingen/flow.jpg'); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-}
-body {
-    background-color: rgb(52, 21, 15);
-    margin: 0;
-}
-
-h1 {
-    color: rgb(234, 206, 170);
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+  /*background-color: var(--color-bg);*/
+  background-image: url('../Afbeeldingen/flow.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--color-accent);
+  font-family: var(--font-family-base);
+  margin: var(--space-large);
 }
 
-body > p {
-    color: rgb(234, 206, 170);
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+h1, h2, h3, h4 {
+  color: var(--color-accent);
 }
 
-h2 {
-    color: rgb(234, 206, 170);
-    font-family: 'Courier New', Courier, monospace;
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-large) 0;
 }
 
-.menu,
-.orders {
-    background-color: rgb(234, 206, 170);
-    padding: 20px;
-    margin: 50px;
+/* TASTINGS & REUSABLE MODULE CLASSES */
+.card {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: var(--space-medium);
+  border-radius: 6px;
+  margin-bottom: var(--space-large);
 }
 
-.menu h4,
-.orders h4 {
-    color: rgb(52, 21, 15);
-    font-family: 'Courier New', Courier, monospace;
+.banner-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: var(--space-medium) auto;
 }
-.menu ul {
-    color: rgb(52, 21, 15);
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    line-height: 1.8;
+
+.button-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  font-family: var(--font-family-base);
+  font-weight: bold;
+  padding: var(--space-small) var(--space-medium);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
-.menu ul a {
-    color: rgb(52, 21, 15);
+
+.form-group {
+  margin-bottom: var(--space-medium);
 }
-.new-order {
-    background-color: rgb(52, 21, 15);
-    color: rgb(234, 206, 170);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 16px;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
 }
-.orders p {
-    color: rgb(52, 21, 15);
-    font-family: 'Courier New', Courier, monospace;
-    line-height: 1;
-    font-size: 17px;
+
+.form-input {
+  font-family: var(--font-family-base);
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
 }
-.view-orders {
-    color: rgb(52, 21, 15);
-    font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
+
+.status-message {
+  font-weight: bold;
+  margin-top: var(--space-small);
+}
+
+.back-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* GROUP ORDERS MODULE CLASSES (Cleaned up for teammate) */
+/* Inverted cream card */
+.order-box {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  padding: 20px;
+  margin-bottom: var(--space-large);
+  border-radius: 6px;
+}
+
+.order-box h4 {
+  color: var(--color-bg);
+  margin-top: 0;
+}
+
+.order-box p,
+.order-box li {
+  color: var(--color-bg);
+  line-height: 1.6;
+}
+
+.order-box a {
+  color: var(--color-bg);
+}
+
+/* Scoped data tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-bg);
+  font-size: 14px;
+  margin-top: var(--space-medium);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-small);
+  text-align: left;
+}
+
+.footer-text {
+  color: var(--color-accent);
+  text-align: center;
+  font-size: 12px;
+  margin-top: var(--space-large);
 }
