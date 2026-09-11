@@ -1,0 +1,70 @@
+body {
+    background-image: url('../Afbeeldingen/flow.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+body {
+    background-color: rgb(52, 21, 15);
+    margin: 0;
+}
+
+h1 {
+    color: rgb(234, 206, 170);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body > p {
+    color: rgb(234, 206, 170);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h2 {
+    color: rgb(234, 206, 170);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.menu,
+.orders {
+    background-color: rgb(234, 206, 170);
+    padding: 20px;
+    margin: 50px;
+}
+
+.menu h4,
+.orders h4 {
+    color: rgb(52, 21, 15);
+    font-family: 'Courier New', Courier, monospace;
+}
+.menu ul {
+    color: rgb(52, 21, 15);
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.8;
+}
+.menu ul a {
+    color: rgb(52, 21, 15);
+}
+.new-order {
+    background-color: rgb(52, 21, 15);
+    color: rgb(234, 206, 170);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.orders p {
+    color: rgb(52, 21, 15);
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1;
+    font-size: 17px;
+}
+.view-orders {
+    color: rgb(52, 21, 15);
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
