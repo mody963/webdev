@@ -145,3 +145,32 @@ button, input, select, textarea {
   font-weight: bold;
   margin-top: var(--space-sm);
 }
+
+
+/* dit zorgt dat de text gaat glowen en in en uit beweegt */
+
+.glow { 
+    font-size: 80px; 
+    color: var(--color-text-light); 
+    text-align: center; 
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+
+    from {
+        text-shadow:
+            0 0 10px var(--color-text-light),
+            0 0 20px var(--color-text-light),
+            0 0 30px var(--color-bg),
+            0 0 40px var(--color-bg);
+    }
+
+    to {
+        text-shadow:
+            0 0 20px var(--color-text-light),
+            0 0 30px var(--color-bg),
+            0 0 40px var(--color-bg),
+            0 0 50px var(--color-bg);
+    }
+}
