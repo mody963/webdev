@@ -1,35 +1,28 @@
-/*A few rules of thumb for naming classes
-
-I'll keep this short.
-
-    Lowercase. Use dashes between words. Don't mix in camelCase or underscores.
-    Class names cannot start with a number. .4-warnings is not a valid selector. (Numbers anywhere else in the name are fine.)
-    Name things by what they are, not what they look like. .warning survives a redesign. .red-text does not.
-    Don't call your container .container if you can call it .product-card or .sidebar. Generic names collide.
-    Be consistent across the whole project. If one thing is .user-avatar, the next thing should not be .userPhoto.
-    Use one language. Mixing English and Dutch class names in the same file (.overzicht next to .box) is bad.
-*/
-
-
-/* root */
 :root {
-  --color-bg: rgb(52, 21, 15);
-  --color-surface: rgba(75, 32, 24, 0.85);
-  --color-surface-light: rgb(234, 206, 170);
-  --color-text-light: rgb(234, 206, 170);
-  --color-text-dark: rgb(52, 21, 15);
-  --color-border: rgb(110, 68, 55);
+  /* Brand Palette */
+  --color-bg: rgb(52, 21, 15);              /* Dark coffee brown */
+  --color-surface: rgba(75, 32, 24, 0.85);  /* Translucent card brown */
+  --color-surface-light: rgb(234, 206, 170);/* Cream highlight container */
+  --color-text-light: rgb(234, 206, 170);   /* Cream text */
+  --color-text-dark: rgb(52, 21, 15);       /* Dark text for light surfaces */
+  --color-border: rgb(110, 68, 55);         /* Muted line separator */
 
+  /* Typography */
   --font-family-base: 'Courier New', Courier, monospace;
 
+  /* Spacing Scale */
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
 }
 
-/* body */
 body {
-  background: var(--color-bg) url('../Afbeeldingen/flow.jpg') center / cover fixed;
+  background-color: var(--color-bg);
+  background-image: url('../Afbeeldingen/flow.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--color-text-light);
   font-family: var(--font-family-base);
   margin: 0;
@@ -52,11 +45,7 @@ hr {
   margin: var(--space-lg) 0;
 }
 
-button, input, select, textarea {
-  font-family: inherit;
-}
 
-/* CARDS */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -64,25 +53,34 @@ button, input, select, textarea {
   border-radius: 6px;
   margin-bottom: var(--space-lg);
 }
-
-.card--highlight,
-.card--highlight :is(h1, h2, h3, h4) {
+.card--highlight {
   background-color: var(--color-surface-light);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-text-light);
+}
+
+.card--highlight h2,
+.card--highlight h3,
+.card--highlight h4,
+.card--highlight p,
+.card--highlight li,
+.card--highlight dt,
+.card--highlight dd {
   color: var(--color-text-dark);
 }
 
-/* BUTTONS & LINKS */
 .button-primary {
   background-color: var(--color-surface-light);
   color: var(--color-text-dark);
   border: none;
+  font-family: var(--font-family-base);
   font-weight: bold;
   font-size: 14px;
   padding: var(--space-sm) var(--space-md);
   border-radius: 4px;
-  display: inline-block;
   cursor: pointer;
   text-decoration: none;
+  display: inline-block;
 }
 
 .button-primary:hover {
@@ -96,7 +94,15 @@ button, input, select, textarea {
   margin-bottom: var(--space-md);
 }
 
-/* FORMS */
+.forward-link {
+  color: var(--color-text-dark);
+  background-color: var(--color-surface-light);
+  text-decoration: underline;
+    padding: 15px 25px;
+    text-decoration: none;
+    display: inline-block;
+}
+
 .form-group {
   margin-bottom: var(--space-md);
 }
@@ -108,6 +114,7 @@ button, input, select, textarea {
 }
 
 .form-input {
+  font-family: var(--font-family-base);
   padding: var(--space-sm);
   border: 1px solid var(--color-border);
   border-radius: 4px;
@@ -118,7 +125,6 @@ button, input, select, textarea {
   box-sizing: border-box;
 }
 
-/* TABLES & MEDIA */
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -131,6 +137,10 @@ button, input, select, textarea {
   padding: var(--space-sm);
   text-align: left;
   border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  font-weight: bold;
 }
 
 .banner-image {
@@ -146,31 +156,26 @@ button, input, select, textarea {
   margin-top: var(--space-sm);
 }
 
-
-/* dit zorgt dat de text gaat glowen en in en uit beweegt */
-
-.glow { 
-    font-size: 80px; 
-    color: var(--color-text-light); 
-    text-align: center; 
-    animation: glow 1s ease-in-out infinite alternate;
+.nav-bar {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+position: sticky; top: 0;
+backdrop-filter: blur(45px);
 }
-
-@keyframes glow {
-
-    from {
-        text-shadow:
-            0 0 10px var(--color-text-light),
-            0 0 20px var(--color-text-light),
-            0 0 30px var(--color-bg),
-            0 0 40px var(--color-bg);
-    }
-
-    to {
-        text-shadow:
-            0 0 20px var(--color-text-light),
-            0 0 30px var(--color-bg),
-            0 0 40px var(--color-bg),
-            0 0 50px var(--color-bg);
-    }
+.nav-bar li {
+    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.nav-bar a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: var(--color-text-light);
+}
+.nav-bar .right {
+    margin-left: auto;
 }
