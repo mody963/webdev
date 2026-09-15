@@ -4,129 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Orders</title>
+
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
+
 </head>
 <!-- als je de wallpaper aan de achterkant aan wil passen dat moet je dat buiten de body zelf doen maar wel als body noemen zodat het wel in de achtergornd staat. -->
-<style>
-    body {
-        /* dit is gewoon zovan ga 1 stap terug zo maak je een in de body kind of comment */ 
-        background-image: url('../Afbeeldingen/flow.jpg'); 
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-    }
-    #makeuptextchampagne{
-        color: rgb(234, 206, 170);
-    }
-
-    #darkercolor {
-        color: rgb(52, 21, 15);
-        font-size: 15px;
-        font-family: 'Courier New', Courier, monospace;
-        line-height: 1.6;
-    }
-
-    .h1-orders{
-        color: rgb(234, 206, 170);
-        text-align: center;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    .h2-orders {
-        color: rgb(234, 206, 170);
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    .h4-orders {
-        color: rgb(52, 21, 15);
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    .order-box {
-        background-color: rgb(234, 206, 170);
-        padding: 20px;
-        margin: 50px;
-    }
-
     
-
-    ul {
-        color: rgb(52, 21, 15);
-        font-size: 20px;
-        font-family: 'Courier New', Courier, monospace;
-        line-height: 1.8;
-    }
-
-    li a {
-        color: rgb(52, 21, 15);
-    }
-
-    .new-order {
-        background-color: rgb(52, 21, 15);
-        color: rgb(234, 206, 170);
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 16px;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-
-    .order-text {
-        color: rgb(52, 21, 15);
-        font-size: 17px;
-        font-family: 'Courier New', Courier, monospace;
-        line-height: 1.6;
-    }
-
-    .view-link {
-        color: rgb(52, 21, 15);
-        font-size: 12px;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        color: rgb(52, 21, 15);
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-    }
-
-    th {
-        text-align: left;
-        padding: 8px;
-    }
-
-    td {
-        padding: 8px;
-    }
-
-    .footer {
-        color: rgb(234, 206, 170);
-        text-align: center;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 12px;
-    }
-
-
-    .glow {
-    font-size: 80px;
-    color: rgb(234, 206, 170);
-    text-align: center;
-    animation: glow 1s ease-in-out infinite alternate;
-    }
-
-    @-webkit-keyframes glow 
-    {
-        from {
-            text-shadow: 0 0 10px rgb(234, 206, 170), 0 0 20px rgb(234, 206, 170), 0 0 30px rgb(52, 21, 15), 0 0 40px rgb(52, 21, 15), 0 0 50px rgb(52, 21, 15), 0 0 60px rgb(52, 21, 15), 0 0 70px rgb(52, 21, 15);
-        }
-        
-        to {
-            text-shadow: 0 0 20px rgb(234, 206, 170), 0 0 30px rgb(52, 21, 15), 0 0 40px rgb(52, 21, 15), 0 0 50px rgb(52, 21, 15), 0 0 60px rgb(52, 21, 15), 0 0 70px rgb(52, 21, 15), 0 0 80px rgb(52, 21, 15);
-        }
-    }
-</style>
 <body >
     
     <!-- om iets bold te maken gebruik je <strong> -->
@@ -136,12 +19,12 @@
     <p class="intro">Order coffee together with other members of the club!</p>
 
     <hr>
-    <br>
-    <h2 class="h2-orders"> MENU</h>
+
+    <h2> MENU</h2>
     <!-- div is eigenlijk gewoon een soort textblok die je kan maken. the division.-->
     <div class="order-box">
 
-        <h4 class="h4-orders">opties</h4>
+        <h4>options</h4>
         
         <!-- maak hier iets om ervoor te zorgen dat je naar een volgende pagina toe kan gaan om alle andere grouporders te bekijken, maak het als lijst keuze. -->
         <!-- button maken of iets om de volgende order te kunnen maken hieronder. -->
@@ -157,74 +40,80 @@
         </ul>
 
         <!-- voor de nieuwe order ook om een optie te hebben om dat te doen ofc-->
-         <a href="NewGroupOrder.html" class="new-order">+ Start New Order</a>
+         <a href="NewGroupOrder.html" class="button-primary">+ Start New Order</a>
 
     </div>
 
-    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
 
-        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">All Orders</h4>
+    <!-- alle orders-->
+    <div class="card">
+
+        <h4>All Orders</h4>
         
-        <p style=" color:rgb(52, 21, 15); font-size:15px; font-family:'Courier New', Courier, monospace; line-height:1; font-size: 17px; "> Take a look at all group orders that have been made. 
+        <p> Take a look at all group orders that have been made. 
         <br> 
         You can explore the orders and sort them by date, costs or members. </p>
 
-        <a href="AllGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15); font-size: 12px; font-family:'Courier New', Courier, monospace;">View All Orders &#8594;</a>
+        <a href="AllGroupOrders.html" target="_blank" class = "back-link">View All Orders &#8594;</a>
 
     </div>
 
-    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+
+    <!-- open orders -->
+    <div class = "card">
  
-        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">Open Orders</h4>
+        <h4>Open Orders</h4>
  
-        <p style=" color:rgb(52, 21, 15); font-size:15px; font-family:'Courier New', Courier, monospace; line-height:1.6; "> These orders are still open and accepting new items. 
+        <p> These orders are still open and accepting new items. 
         <br>
         You can join an open order or, if you started it, add to it or change it while it remains open.
         <br>
         Only the starter or a committee member with the right permissions can cancel an open order. </p>
  
-        <a href="OpenGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15); font-size: 12px; font-family:'Courier New', Courier, monospace;">View Open Orders &#8594;</a>
+        <a href="OpenGroupOrders.html" target="_blank" class = "back-link">View Open Orders &#8594;</a>
  
     </div>
 
-
-    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+    <!-- closed orders-->
+    <div class = "card">
  
-        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">Closed Orders</h4>
+        <h4>Closed Orders</h4>
  
-        <p style=" color:rgb(52, 21, 15); font-size:15px; font-family:'Courier New', Courier, monospace; line-height:1.6; "> Orders that have already been closed can no longer be changed or joined. 
+        <p > Orders that have already been closed can no longer be changed or joined. 
         <br>
         You can still view what was ordered, by who, and for how much. </p>
  
-        <a href="ClosedGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15); font-size: 12px; font-family:'Courier New', Courier, monospace;">View Closed Orders &#8594;</a>
+        <a href="ClosedGroupOrders.html" target="_blank" class="back-link">View Closed Orders &#8594;</a>
  
     </div>
 
-    <div style="background-color:rgb(234, 206, 170); padding:20px; margin:50px;">
+
+    <!--status open orderrs -->
+    <div class="card">
  
-        <h4 style="color:rgb(52, 21, 15);font-family: 'Courier New', Courier, monospace;">Status Open Orders</h4>
+        <h4>Status Open Orders</h4>
  
-        <p id="darkercolour"> Quick overview of how the currently open orders are progressing: how many members joined so far and the current total costs. </p>
+        <p> Quick overview of how the currently open orders are progressing: how many members joined so far and the current total costs. </p>
  
-        <table style="width:100%; border-collapse:collapse; color:rgb(52, 21, 15); font-family:'Courier New', Courier, monospace; font-size:14px;">
-            <tr style="border-bottom:1px solid rgb(52, 21, 15);">
-                <th style="text-align:left; padding:8px;">Order</th>
-                <th style="text-align:left; padding:8px;">Started by</th>
-                <th style="text-align:left; padding:8px;">Members</th>
-                <th style="text-align:left; padding:8px;">Total costs</th>
+        <table class="data-table">
+            <tr>
+                <th>Order</th>
+                <th>Started by</th>
+                <th>Members</th>
+                <th>Total costs</th>
             </tr>
             <tr>
-                <td style="padding:8px;">Example Order</td>
-                <td style="padding:8px;">-</td>
-                <td style="padding:8px;">-</td>
-                <td style="padding:8px;">-</td>
+                <td>Example Order</td>
+                <td >-</td>
+                <td>-</td>
+                <td >-</td>
             </tr>
         </table>
  
     </div>
 
     <hr>
-    <p style="color:rgb(234, 206, 170); text-align:center; font-family: 'Courier New', Courier, monospace; font-size:12px;">Group Orders &copy; the club</p>
+    <p class= "footer-text">Group Orders &copy; the club</p>
 
     
 </body>
