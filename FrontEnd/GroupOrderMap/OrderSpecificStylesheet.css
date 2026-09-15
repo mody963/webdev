@@ -1,0 +1,110 @@
+
+
+
+
+.coffee-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+ 
+.coffee-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+ 
+.coffee-card-title {
+  margin: 0;
+}
+ 
+.coffee-card-description {
+  font-size: 14px;
+  margin: 0;
+  flex-grow: 1;
+}
+ 
+.coffee-card-price {
+  font-weight: bold;
+  margin: 0;
+}
+ 
+.coffee-card-image {
+  height: 90px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+ 
+.coffee-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+ 
+/* QUANTITY STEPPER */
+.quantity-stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+ 
+.quantity-button {
+  background-color: var(--color-surface-light);
+  color: var(--color-text-dark);
+  border: none;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+ 
+.quantity-button:hover {
+  opacity: 0.9;
+}
+ 
+.quantity-value {
+  min-width: 28px;
+  text-align: center;
+  font-weight: bold;
+}
+ 
+/* saemnvatting dvan de orders */
+.order-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md) 0;
+}
+ 
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+ 
+.order-summary-empty {
+  font-style: italic;
+  padding: var(--space-sm) 0;
+}
+ 
+.order-summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: var(--space-md);
+}
