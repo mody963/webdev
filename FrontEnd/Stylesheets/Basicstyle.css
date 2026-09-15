@@ -11,33 +11,25 @@ I'll keep this short.
 */
 
 
-/* DESIGN TOKENS (Shared across all 4 modules) */
+/* root */
 :root {
-  /* Brand Palette */
-  --color-bg: rgb(52, 21, 15);              /* Dark coffee brown */
-  --color-surface: rgba(75, 32, 24, 0.85);  /* Translucent card brown */
-  --color-surface-light: rgb(234, 206, 170);/* Cream highlight container */
-  --color-text-light: rgb(234, 206, 170);   /* Cream text */
-  --color-text-dark: rgb(52, 21, 15);       /* Dark text for light surfaces */
-  --color-border: rgb(110, 68, 55);         /* Muted line separator */
+  --color-bg: rgb(52, 21, 15);
+  --color-surface: rgba(75, 32, 24, 0.85);
+  --color-surface-light: rgb(234, 206, 170);
+  --color-text-light: rgb(234, 206, 170);
+  --color-text-dark: rgb(52, 21, 15);
+  --color-border: rgb(110, 68, 55);
 
-  /* Typography */
   --font-family-base: 'Courier New', Courier, monospace;
 
-  /* Spacing Scale */
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
 }
 
-/* GLOBAL RESETS & INHERITANCE */
+/* body */
 body {
-  background-color: var(--color-bg);
-  background-image: url('../Afbeeldingen/flow.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  background: var(--color-bg) url('../Afbeeldingen/flow.jpg') center / cover fixed;
   color: var(--color-text-light);
   font-family: var(--font-family-base);
   margin: 0;
@@ -60,9 +52,11 @@ hr {
   margin: var(--space-lg) 0;
 }
 
-/* UNIVERSAL CARDS (Used in all 4 modules) */
+button, input, select, textarea {
+  font-family: inherit;
+}
 
-/* Default Dark Card (Used for Tastings, Shelf items, Tools) */
+/* CARDS */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -71,36 +65,24 @@ hr {
   margin-bottom: var(--space-lg);
 }
 
-/* Alternate Inverted Light Card (Great for highlighting active orders or forms) */
-.card--highlight {
+.card--highlight,
+.card--highlight :is(h1, h2, h3, h4) {
   background-color: var(--color-surface-light);
   color: var(--color-text-dark);
-  border: 1px solid var(--color-text-light);
 }
 
-.card--highlight h2,
-.card--highlight h3,
-.card--highlight h4,
-.card--highlight p,
-.card--highlight li,
-.card--highlight dt,
-.card--highlight dd {
-  color: var(--color-text-dark);
-}
-
-/* UNIVERSAL BUTTONS & LINKS */
+/* BUTTONS & LINKS */
 .button-primary {
   background-color: var(--color-surface-light);
   color: var(--color-text-dark);
   border: none;
-  font-family: var(--font-family-base);
   font-weight: bold;
   font-size: 14px;
   padding: var(--space-sm) var(--space-md);
   border-radius: 4px;
+  display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
 }
 
 .button-primary:hover {
@@ -114,7 +96,7 @@ hr {
   margin-bottom: var(--space-md);
 }
 
-/* UNIVERSAL FORMS */
+/* FORMS */
 .form-group {
   margin-bottom: var(--space-md);
 }
@@ -126,7 +108,6 @@ hr {
 }
 
 .form-input {
-  font-family: var(--font-family-base);
   padding: var(--space-sm);
   border: 1px solid var(--color-border);
   border-radius: 4px;
@@ -137,7 +118,7 @@ hr {
   box-sizing: border-box;
 }
 
-/* UNIVERSAL DATA TABLES & LISTS */
+/* TABLES & MEDIA */
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -152,11 +133,6 @@ hr {
   border-bottom: 1px solid var(--color-border);
 }
 
-.data-table th {
-  font-weight: bold;
-}
-
-/* Clean image banners */
 .banner-image {
   max-width: 100%;
   height: auto;
