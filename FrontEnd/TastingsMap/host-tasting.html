@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zetsel - Host a Tasting</title>
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
+</head>
+<body>
+
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="tastings.html">Tastings</a></li>
+            <li><a href="host-tasting.html">Host Session</a></li>
+            <li class="right"><a href="../../index.html">Main Menu</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <p><a href="tastings.html" class="back-link">&larr; Back to Tastings</a></p>
+        <h1>Host a Tasting</h1>
+        <hr>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Schedule a Tasting</h2>
+            <p>Schedule a blind cupping session in the back room.</p>
+
+            <form action="tastings.html">
+                <div class="form-group">
+                    <label for="tasting-title">Title:</label>
+                    <input type="text" id="tasting-title" class="form-input" placeholder="e.g. FLEX YOUR BEANS CUP" size="30" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tasting-date">Date &amp; Time:</label>
+                    <input type="datetime-local" id="tasting-date" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tasting-cap">Capacity (Seats):</label>
+                    <input type="number" id="tasting-cap" class="form-input" min="2" max="12" value="6" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tasting-lineup">Beans in Line-up (4 or 5 coffees):</label>
+                    <input type="text" id="tasting-lineup" class="form-input" placeholder="e.g. Geisha, Worka, Chelbesa, Finca Betulia" style="max-width: 100%;">
+                </div>
+
+                <button type="submit" class="button-primary">Announce Tasting</button>
+            </form>
+        </div>
+    </main>
+
+    <hr>
+    <p class="footer-text" style="text-align: center; font-size: 12px; opacity: 0.8;">Coffee Tastings &copy; Zetsel Club</p>
+
+</body>
+</html>

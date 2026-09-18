@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zetsel - Live Tasting Session</title>
+    <!-- Zelfde CSS pad als de andere pagina's -->
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
+</head>
+<body>
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="tastings.html">Tastings</a></li>
+            <li><a href="host-tasting.html">Host Session</a></li>
+            <li class="right"><a href="../../index.html">Main Menu</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <p><a href="tastings.html" class="back-link">&larr; Back to Tastings</a></p>
+        <h1>Cupping Room: Winter Cupping 2026</h1>
+        <hr>
+    </header>
+
+    <main>
+        <!-- Info over de actieve sessie -->
+        <div class="card card--highlight">
+            <h2>Live Session Info</h2>
+            <p>
+                <strong>Host:</strong> Mo | <strong>Room:</strong> Back Room<br>
+                <strong>Date:</strong> September 13, 2026 at 19:30<br>
+                <strong>Tasting Type:</strong> Blind tasting (identity revealed after scoring)
+            </p>
+        </div>
+
+        <!-- 1. De blinde line-up met scores -->
+        <div class="card">
+            <h2>The Line-up &amp; Club Scores</h2>
+            <p>Beans are poured without saying which is which. The average per bean is calculated from table scores.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Pour Position</th>
+                        <th scope="col">Revealed Bean</th>
+                        <th scope="col">Average Score</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Position #1</strong></td>
+                        <td>Tim Wendelboe - Caballero Geisha</td>
+                        <td>8.8 / 10</td>
+                        <td>Scoring Closed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position #2</strong></td>
+                        <td>La Cabra - Worka Sakaro</td>
+                        <td>8.1 / 10</td>
+                        <td>Scoring Closed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position #3</strong></td>
+                        <td><em>Mystery Cup (Hidden)</em></td>
+                        <td>Pending...</td>
+                        <td><strong>Active Pour</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position #4</strong></td>
+                        <td><em>Mystery Cup (Hidden)</em></td>
+                        <td>Pending...</td>
+                        <td>Upcoming</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 2. Formulier om te scoren (Alleen bevestigde stoelen) -->
+        <div class="card">
+            <h2>Score a Cup</h2>
+            <p><small>Only members with a confirmed seat at the table can enter a score.</small></p>
+
+            <form>
+                <div class="form-group">
+                    <label for="attendee-name">Your Name:</label>
+                    <select id="attendee-name" class="form-input" required>
+                        <option value="">-- Choose Member --</option>
+                        <option value="Mo">Mo (Host)</option>
+                        <option value="Aimee">Aimee</option>
+                        <option value="Daan">Daan</option>
+                        <option value="Fernando">Fernando</option>
+                        <option value="Lars">Lars</option>
+                        <option value="Sofia">Sofia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cup-position">Line-up Position:</label>
+                    <select id="cup-position" class="form-input" required>
+                        <option value="1">Position #1</option>
+                        <option value="2">Position #2</option>
+                        <option value="3" selected>Position #3 (Current)</option>
+                        <option value="4">Position #4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cup-score">Score (1 - 10):</label>
+                    <input type="number" id="cup-score" class="form-input" min="1" max="10" step="0.1" placeholder="e.g. 8.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cup-remark">Tasting Remark:</label>
+                    <textarea id="cup-remark" class="form-input" rows="3" placeholder="Notes on aroma, acidity, body..." style="max-width: 100%;" required></textarea>
+                </div>
+
+                <button id="score-btn" type="button" class="button-primary">Submit Score</button>
+                <p id="score-status" class="status-text"></p>
+            </form>
+        </div>
+    </main>
+
+    <hr>
+    <p class="footer-text" style="text-align: center; font-size: 12px; opacity: 0.8;">Coffee Tastings &copy; Zetsel Club</p>
+
+    <script>
+        const scoreBtn = document.querySelector("#score-btn");
+        const scoreStatus = document.querySelector("#score-status");
+
+        scoreBtn.addEventListener("click", () => {
+            const member = document.querySelector("#attendee-name").value;
+            const pos = document.querySelector("#cup-position").value;
+            const score = document.querySelector("#cup-score").value;
+
+            if (!member || !score) {
+                scoreStatus.textContent = "Please select your name and enter a score.";
+                return;
+            }
+
+            scoreStatus.textContent = `Score of ${score} submitted for Position #${pos} by ${member}!`;
+        });
+    </script>
+
+</body>
+</html>

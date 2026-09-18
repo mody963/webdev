@@ -4,30 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zetsel - Coffee Tastings</title>
-    <!-- LINK YOUR CSS FILE HERE: Adjust ../ if styles.css is one folder up -->
+    <!--  step up from TastingsMap/ to FrontEnd/, then into Stylesheets/ -->
     <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
 </head>
 <body>
 
+    <!-- Uses  .nav-bar, and .right classes -->
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="tastings.html">Tastings</a></li>
+            <li><a href="../TastingsMap/host-tasting.html">Host Session</a></li>
+            <li class="right"><a href="../../index.html">Main Menu</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <p><a href="../../index.html" class="back-link">&larr; Back to Main Menu</a></p>
         <h1>Coffee Tastings</h1>
         <hr>
-        <!-- Corrected image relative path with descriptive alt text -->
-        <img src="../Afbeeldingen/coffee.jpg" alt="A steaming cup of freshly brewed pour-over coffee" class="banner-image">
+        <!-- Uses .banner-image -->
+        <img src="../Afbeeldingen/coffee.jpg" alt="Multiple coffee beans" class="banner-image">
     </header>
 
     <main>
-        <!-- Section: Sign up for upcoming tastings -->
+        <!-- Uses  .card--highlight class to highlight the host action banner -->
+        <section class="card card--highlight">
+            <h2>Lead a Cupping</h2>
+            <p>Every member who knows the beans can book the back room, pick a line-up of 4 to 5 coffees, and lead a blind tasting session.</p>
+            <p>
+                <!-- Uses .forward-link class -->
+                <a href="../TastingsMap/host-tasting.html" class="forward-link">+ Host a New Tasting &rarr;</a>
+            </p>
+        </section>
+
+        <!-- ACTIVE / UPCOMING SESSIONS -->
         <section>
-            <h2>Upcoming Tasting Session</h2>
-            
+            <h2 id="upcoming-sessions-title">Upcoming Tasting Sessions</h2>
+
+            <!-- Uses standard .card -->
             <article class="card">
                 <header>
-                    <h3>First Tasting Cup</h3>
-                    <p><strong>Host:</strong> Mo</p>
-                    <p><strong>Date:</strong> September 13, 2026</p>
-                    <p><strong>Capacity:</strong> 6 seats (4 confirmed)</p>
+                    <h3>Winter Cupping 2026</h3>
+                    <p><strong>Host:</strong> Mo | <strong>Status:</strong> Active (Room Key with Committee)</p>
+                    <p><strong>Date &amp; Time:</strong> <time datetime="2026-09-13T19:30">September 13, 2026 at 19:30</time></p>
+                    <p><strong>Capacity:</strong> 6 seats (6 confirmed, 2 waiting)</p>
                 </header>
 
                 <h4>Confirmed Attendees:</h4>
@@ -36,59 +56,114 @@
                     <li>Aimee</li>
                     <li>Daan</li>
                     <li>Fernando</li>
+                    <li>Lars</li>
+                    <li>Sofia</li>
                 </ol>
 
-                <p><strong>Waiting List:</strong> None yet</p>
+                <h4>Waiting List (Earliest signup gets next freed seat):</h4>
+                <ol start="7">
+                    <li>Kavita (Queued 10:15)</li>
+                    <li>Bram (Queued 11:40)</li>
+                </ol>
 
-                <button id="signup-btn" type="button" class="button-primary">Sign up for a seat</button>
-                <p id="signup-status" class="status-message"></p>
+                <p>
+                    <a href="tasting-session.html" class="button-primary">Enter Tasting Room &amp; Score</a>
+                    <button id="join-waitlist-btn" type="button" class="button-primary">Join Waiting List</button>
+                </p>
+                <!-- uses .status-text -->
+                <p id="waitlist-feedback" class="status-text"></p>
+            </article>
+
+            <!-- Second upcoming session -->
+            <article class="card">
+                <header>
+                    <h3>Washed African Profiles</h3>
+                    <p><strong>Host:</strong> Elena | <strong>Status:</strong> Active</p>
+                    <p><strong>Date &amp; Time:</strong> <time datetime="2026-10-04T20:00">October 4, 2026 at 20:00</time></p>
+                    <p><strong>Capacity:</strong> 6 seats (3 confirmed &mdash; 3 seats open)</p>
+                </header>
+
+                <h4>Confirmed Attendees:</h4>
+                <ol>
+                    <li>Elena (Host)</li>
+                    <li>Thijs</li>
+                    <li>Sara</li>
+                </ol>
+
+                <p>
+                    <button id="claim-seat-btn" type="button" class="button-primary">Claim a Seat</button>
+                </p>
+                <!-- Uses .status-text -->
+                <p id="claim-feedback" class="status-text"></p>
             </article>
         </section>
 
         <hr>
 
-        <!-- Section: Host a tasting -->
+        <!-- CLUB VERDICTS -->
         <section>
-            <h2>Host a Tasting</h2>
-            <p>Schedule a blind cupping session in the back room.</p>
+            <h2 id="past-verdicts-title">Past Cupping Verdicts</h2>
+            <p>Calculated average scores decide what the club buys next in Group Orders.</p>
 
-            <form class="card">
-                <div class="form-group">
-                    <label for="tasting-title">Title:</label>
-                    <input type="text" id="tasting-title" class="form-input" placeholder="e.g. FLEX YOUR BEANS CUP" size="30">
-                </div>
-
-                <div class="form-group">
-                    <label for="tasting-date">Date &amp; Time:</label>
-                    <input type="datetime-local" id="tasting-date" class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label for="tasting-cap">Capacity (Seats):</label>
-                    <input type="number" id="tasting-cap" class="form-input" min="2" max="12" value="6">
-                </div>
-
-                <button id="create-btn" type="button" class="button-primary">Announce Tasting</button>
-                <p id="create-status" class="status-message"></p>
-            </form>
+            <!-- uses .data-table class with th and td rules -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Session</th>
+                        <th scope="col">Host</th>
+                        <th scope="col">Top Rated Bean</th>
+                        <th scope="col">Average Score</th>
+                        <th scope="col">Re-order?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-08-14</td>
+                        <td>Thermal Shock vs Washed</td>
+                        <td>Mo</td>
+                        <td>Milky Cake (Dak)</td>
+                        <td>8.8 / 10</td>
+                        <td><strong>Yes (Placed)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-22</td>
+                        <td>Nordic Roasters Special</td>
+                        <td>Sofia</td>
+                        <td>Caballero Geisha (Wendelboe)</td>
+                        <td>9.1 / 10</td>
+                        <td><strong>Yes (Placed)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2026-06-11</td>
+                        <td>Dark Roast Espresso Test</td>
+                        <td>Daan</td>
+                        <td>Italian Dark (Local Roaster)</td>
+                        <td>4.2 / 10</td>
+                        <td>No (Failed)</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
-        <!-- RAH -->
 
     <script>
-        const signupBtn = document.querySelector("#signup-btn");
-        const signupStatus = document.querySelector("#signup-status");
-        const createBtn = document.querySelector("#create-btn");
-        const createStatus = document.querySelector("#create-status");
+        const waitlistBtn = document.querySelector("#join-waitlist-btn");
+        const waitlistFeedback = document.querySelector("#waitlist-feedback");
+        const claimBtn = document.querySelector("#claim-seat-btn");
+        const claimFeedback = document.querySelector("#claim-feedback");
 
-        signupBtn.addEventListener("click", () => {
-            signupStatus.textContent = "Seat confirmed! You are #5 on the list.";
-        });
+        if (waitlistBtn) {
+            waitlistBtn.addEventListener("click", () => {
+                waitlistFeedback.textContent = "You are now #3 on the waiting list.";
+            });
+        }
 
-        createBtn.addEventListener("click", () => {
-            const title = document.querySelector("#tasting-title").value || "New Tasting";
-            createStatus.textContent = `Tasting "${title}" announced successfully!`;
-        });
+        if (claimBtn) {
+            claimBtn.addEventListener("click", () => {
+                claimFeedback.textContent = "Seat confirmed! You are attendee #4.";
+            });
+        }
     </script>
 
 </body>
