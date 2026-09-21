@@ -48,7 +48,7 @@
   gap: var(--space-sm);
 }
  
-/* QUANTITY STEPPER */
+/* the hoeveelheid teller */
 .quantity-stepper {
   display: flex;
   align-items: center;
