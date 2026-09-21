@@ -1,3 +1,9 @@
-        <a href="AllGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15); font-size: 12px;"">All Group Orders</a>
-            <a href="OpenGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);font-size: 12px;">Open Group Orders</a>
-            <a href="ClosedGroupOrders.html" target="_blank" style="color: rgb(52, 21, 15);font-size: 12px;">Closed Group Orders</a>
+Om iets bold te maken gebruik je <strong>
+als je de wallpaper aan de achterkant aan wil passen dat moet je dat buiten de body zelf doen maar wel als body noemen zodat het wel in de achtergornd staat.
+
+
+tr= table row, 
+th= table header 
+td = table data
+
+   
