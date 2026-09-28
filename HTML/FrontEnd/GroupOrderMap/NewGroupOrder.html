@@ -1,0 +1,211 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Group Order</title>
+
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <p>
+            <a href="Grouporder.html.html" class="back-link">
+                &larr; Back to Group Orders
+            </a>
+        </p>
+
+        <h1>Start New Group Order</h1>
+
+    </header>
+
+    <p class="intro">
+        Start a new order and invite other members to join!
+    </p>
+
+    <hr>
+
+
+    <!-- New order form -->
+
+    <div class="card">
+
+        <h2>New Order</h2>
+
+        <form id="new-order-form">
+
+
+            <!-- Coffee bean -->
+
+            <div class="form-group">
+
+                <label for="bean">
+                    Coffee Bean
+                </label>
+
+                <select
+                    id="bean"
+                    name="bean"
+                    class="form-input"
+                    required
+                >
+
+                    <option value="">
+                        -- Select a coffee bean --
+                    </option>
+
+                    <option value="Ethiopian Yirgacheffe">
+                        Ethiopian Yirgacheffe
+                    </option>
+
+                    <option value="Colombian Supremo">
+                        Colombian Supremo
+                    </option>
+
+                    <option value="Brazilian Santos">
+                        Brazilian Santos
+                    </option>
+
+                    <option value="Costa Rican Tarrazú">
+                        Costa Rican Tarrazú
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Minimum amount of grams -->
+
+            <div class="form-group">
+
+                <label for="minimum-grams">
+                    Minimum amount of grams
+                </label>
+
+                <input
+                    type="number"
+                    id="minimum-grams"
+                    name="minimum-grams"
+                    class="form-input"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Closing date -->
+
+            <div class="form-group">
+
+                <label for="closing-date">
+                    Closing date
+                </label>
+
+                <input
+                    type="date"
+                    id="closing-date"
+                    name="closing-date"
+                    class="form-input"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Start order -->
+
+            <button
+                type="submit"
+                class="button-primary"
+            >
+                + Start Group Order
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <hr>
+
+
+    <p class="footer-text">
+        Group Orders &copy; the club
+    </p>
+
+
+    <script>
+
+        document
+            .getElementById("new-order-form")
+            .addEventListener("submit", function(event) {
+
+                /*Voorkomt dat de pagina automatisch opnieuw geladen wordt.*/ 
+                event.preventDefault();
+
+                const bean =
+                    document.getElementById("bean").value;
+
+                const minimumGrams =
+                    document.getElementById("minimum-grams").value;
+
+                const closingDate =
+                    document.getElementById("closing-date").value;
+
+
+                const newOrder = {
+
+                    bean: bean,
+
+                    minimumGrams: Number(minimumGrams),
+
+                    closingDate: closingDate,
+
+                    totalGrams: 0,
+
+                    status: "Open"
+
+                };
+
+
+                /*
+                    Bestaande Group Orders ophalen Als er nog geen orders zijgebruiken we een lege array.
+                */
+
+                let groupOrders =
+                    JSON.parse(
+                        localStorage.getItem("groupOrders")
+                    ) || [];
+
+                groupOrders.push(newOrder);
+
+                localStorage.setItem(
+                    "groupOrders",
+                    JSON.stringify(groupOrders)
+                );
+
+                alert("Group Order successfully created!");
+
+                // zorgt dat je meteen weer terug gaat naar de groupordersopagina. 
+                window.location.href = "Grouporder.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>
+```
