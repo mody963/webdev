@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WriteABrewnote</title>
+    <link rel="stylesheet" href="../Stylesheets/Basicstyle.css">
+</head>
+<body>
+    <ul class = "nav-bar">
+    <!-- <p><a href="../index.html" class = "back-link">&larr; Back to Main Menu</a></p>-->
+    <li><a href="default.asp">Home</a></li>
+    <li><a href="news.asp">News</a></li>
+    <li><a href="contact.asp">Contact</a></li>
+    <li class="right"><a href="about.asp">About</a></li>
+    </ul>
+    <header>
+    <h1>Write a brewnote</h1>
+    <hr>
+    <br>
+    </header>
+
+
+    <main>
+    <section>
+        <h2>Add brew note</h2>
+        <p>Enter the details of your brew.</p>
+
+        <form class="card">
+
+            <div class="form-group">
+                <label for="brewnote-title">Title:</label>
+                <input
+                    type="text"
+                    id="brewnote-title"
+                    class="form-input"
+                    placeholder="e.g. Sweet & fruity (french press)"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="Bean">Bean name :</label>
+                <input type="text" id="Bean-name" class="form-input" placeholder="e.g. arabica">
+            </div>
+
+            <div class="form-group">
+                <label for="brew-method">Method:</label>
+                <select id="brew-method" class="form-input">
+                    <option value="Drip-machine">Drip machine</option>
+                    <option value="espresso">Espresso</option>
+                    <option value="french-press">French Press</option>
+                    <option value="aeropress">AeroPress</option>
+                    <option value="Pourover">Pourover</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dose">Dose (grams):</label>
+                <input type="number" id="dose" class="form-input" placeholder="e.g. 15" min="1" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="grind">Grind:</label>
+                <input type="text" id="grind" class="form-input" placeholder="e.g. Medium-fine / 24 clicks">
+            </div>
+
+            <div class="form-group">
+                <label for="result">Result:</label>
+                <textarea
+                    id="result"
+                    class="form-input"
+                    placeholder="e.g. Sweet, fruity and balanced..."
+                    rows="4"
+                ></textarea>
+            </div>
+
+            <button id="create-btn" type="button" class="button-primary">
+                Save brew note
+            </button>
+
+            <p id="create-status" class="status-message"></p>
+
+        </form>
+    </section>
+    </main>
+</body>
+</html>
