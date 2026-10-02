@@ -1,31 +1,46 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import type { Tasting } from '../types/Tasting'
 
-/*
-  User fills in form -> User clicks "Announce Tasting"-> handleSubmit()-> emit('create-tasting', data)-> Parent receives the event-> Parent runs addTasting(data)
-*/
-// Define the shape of data this form creates
-export interface NewTastingData {
-  title: string
-  dateTime: string
-  capacity: number
-  lineup: string
-}
-
-// event to send to parent through emit
-const emit = defineEmits<{
-  'create-tasting': [data: NewTastingData]
+const props = defineProps<{
+  editingTasting?: Tasting | null
 }>()
 
-// Reactive Form State (Two-Way Binding with v-model)
-const title = ref<string>('')
-const dateTime = ref<string>('')
-const capacity = ref<number>(6)
-const lineup = ref<string>('')
-const formError = ref<string>('')
+const emit = defineEmits<{
+  add: [title: string, host: string, dateTime: string, capacity: number, lineup: string]
+  update: [tasting: Tasting]
+  cancel: []
+}>()
+
+const title = ref('')
+const host = ref('Mo')
+const dateTime = ref('')
+const capacity = ref(6)
+const lineup = ref('')
+const formError = ref('')
+
+watch(
+  () => props.editingTasting,
+  (tasting) => {
+    formError.value = ''
+    if (tasting) {
+      title.value = tasting.title
+      host.value = tasting.host
+      dateTime.value = tasting.dateTime
+      capacity.value = tasting.capacity
+      lineup.value = tasting.lineup
+    } else {
+      title.value = ''
+      host.value = 'Mo'
+      dateTime.value = ''
+      capacity.value = 6
+      lineup.value = ''
+    }
+  },
+  { immediate: true }
+)
 
 function handleSubmit() {
-  // Simple validation
   if (!title.value.trim()) {
     formError.value = 'Please provide a tasting title.'
     return
@@ -35,82 +50,105 @@ function handleSubmit() {
     return
   }
 
-  // Send the data up to the parent
-  emit('create-tasting', {
-    title: title.value.trim(),
-    dateTime: dateTime.value,
-    capacity: capacity.value,
-    lineup: lineup.value.trim() || 'No beans specified'
-  })
-
-  // Reset the form
-  title.value = ''
-  dateTime.value = ''
-  capacity.value = 6
-  lineup.value = ''
-  formError.value = ''
+  if (props.editingTasting) {
+    emit('update', {
+      ...props.editingTasting,
+      title: title.value.trim(),
+      host: host.value.trim(),
+      dateTime: dateTime.value,
+      capacity: capacity.value,
+      lineup: lineup.value.trim() || 'No beans specified'
+    })
+  } else {
+    emit(
+      'add',
+      title.value.trim(),
+      host.value.trim(),
+      dateTime.value,
+      capacity.value,
+      lineup.value.trim() || 'No beans specified'
+    )
+  }
 }
 </script>
 
 <template>
-  <div class="card">
-    <h2>Schedule a Tasting</h2>
-    <p>Schedule a blind cupping session in the back room.</p>
+  <form @submit.prevent="handleSubmit">
+    <div class="form-group">
+      <label for="tasting-title">Tasting Title:</label>
+      <input 
+        id="tasting-title" 
+        v-model="title" 
+        type="text" 
+        class="form-input" 
+        placeholder="e.g. Ethiopian Washed vs Natural" 
+        required
+      >
+    </div>
 
-    <!-- @submit.prevent stops the browser from doing a page reload -->
-    <form @submit.prevent="handleSubmit">
-      <div class="form-group">
-        <label for="tasting-title">Title:</label>
-        <input 
-          id="tasting-title" 
-          v-model="title" 
-          type="text" 
-          class="form-input" 
-          placeholder="e.g. FLEX YOUR BEANS CUP" 
-          required
-        >
-      </div>
+    <div class="form-group">
+      <label for="tasting-host">Host Member:</label>
+      <input 
+        id="tasting-host" 
+        v-model="host" 
+        type="text" 
+        class="form-input" 
+        required
+      >
+    </div>
 
-      <div class="form-group">
-        <label for="tasting-date">Date &amp; Time:</label>
-        <input 
-          id="tasting-date" 
-          v-model="dateTime" 
-          type="datetime-local" 
-          class="form-input" 
-          required
-        >
-      </div>
+    <div class="form-group">
+      <label for="tasting-date">Date &amp; Time:</label>
+      <input 
+        id="tasting-date" 
+        v-model="dateTime" 
+        type="datetime-local" 
+        class="form-input" 
+        required
+      >
+    </div>
 
-      <div class="form-group">
-        <label for="tasting-cap">Capacity (Seats):</label>
-        <input 
-          id="tasting-cap" 
-          v-model.number="capacity" 
-          type="number" 
-          min="2" 
-          max="12" 
-          class="form-input" 
-          required
-        >
-      </div>
+    <div class="form-group">
+      <label for="tasting-cap">Capacity (Seats):</label>
+      <input 
+        id="tasting-cap" 
+        v-model.number="capacity" 
+        type="number" 
+        min="2" 
+        max="12" 
+        class="form-input" 
+        required
+      >
+    </div>
 
-      <div class="form-group">
-        <label for="tasting-lineup">Beans in Line-up (4 or 5 coffees):</label>
-        <input 
-          id="tasting-lineup" 
-          v-model="lineup" 
-          type="text" 
-          class="form-input" 
-          placeholder="e.g. Geisha, Worka, Chelbesa, Finca Betulia"
-        >
-      </div>
+    <div class="form-group">
+      <label for="tasting-lineup">Beans in Line-up (4 or 5 coffees):</label>
+      <input 
+        id="tasting-lineup" 
+        v-model="lineup" 
+        type="text" 
+        class="form-input" 
+        placeholder="e.g. Geisha, Worka, Chelbesa, Finca Betulia"
+      >
+    </div>
 
-      <p v-if="formError" class="form-error">{{ formError }}</p>
+    <p v-if="formError" class="form-error">{{ formError }}</p>
 
-      <button type="submit" class="button-primary">Announce Tasting</button>
-    </form>
-  </div>
+    <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
+      <button type="submit" class="button-primary">
+        {{ editingTasting ? 'Save Changes' : '+ Announce Tasting' }}
+      </button>
+
+      <button 
+        v-if="editingTasting" 
+        type="button" 
+        class="back-link" 
+        @click="emit('cancel')"
+      >
+        Cancel Edit
+      </button>
+    </div>
+  </form>
 </template>
 
 <style scoped>
