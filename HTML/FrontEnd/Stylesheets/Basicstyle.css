@@ -95,6 +95,7 @@ hr {
 }
 
 .forward-link {
+  margin-top: 2%;
   color: var(--color-text-dark);
   background-color: var(--color-surface-light);
   text-decoration: underline;
