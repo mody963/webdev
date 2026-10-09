@@ -18,7 +18,7 @@
 
 body {
   background-color: var(--color-bg);
-  background-image: url('/FrontEnd/src/assets/flow.jpg');
+  background-image: url('flow.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -157,12 +157,13 @@ hr {
 }
 
 .nav-bar {
+width: 100%;
 list-style-type: none;
 margin: 0;
 padding: 0;
 display: flex;
 position: sticky; top: 0;
-backdrop-filter: blur(45px);
+backdrop-filter: blur(10px);
 }
 .nav-bar li {
     list-style-type: none;

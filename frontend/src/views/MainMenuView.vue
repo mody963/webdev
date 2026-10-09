@@ -10,9 +10,9 @@
       </RouterLink>
       <br>
 
-      <a href="#">
+      <RouterLink to="/the-shelf">
         The shelf
-      </a>
+      </RouterLink>
       <br>
 
       <RouterLink to="/tastings">
