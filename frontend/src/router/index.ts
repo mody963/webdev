@@ -4,6 +4,7 @@ import MainMenuView from '../views/MainMenuView.vue'
 import GroupOrdersView from '../views/GroupOrdersView.vue'
 import NewGroupOrderView from '../views/NewGroupOrderView.vue'
 import TastingsView from '../views/TastingsView.vue'
+import HostTastingView from '../views/HostTastingView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/tastings',
       name: 'tastings',
       component: TastingsView
+    },
+    {
+      path: '/host-tasting',
+      name: 'host-tasting',
+      component: HostTastingView // <-- Add this
     }
   ]
 })
