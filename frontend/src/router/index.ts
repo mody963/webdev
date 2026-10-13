@@ -6,7 +6,8 @@ import NewGroupOrderView from '../views/NewGroupOrderView.vue'
 import TastingsView from '../views/TastingsView.vue'
 import TheShelfView from '../views/TheShelfView.vue'
 import MyCoffeeView from '@/views/MyCoffeeView.vue'
-import WriteBrewNoteView from '@/views/WriteBrewNoteView.vue'
+import WriteBrewNote from '@/components/WriteBrewNote.vue'
+import BrewNoteView from '@/views/BrewNoteView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -45,7 +46,12 @@ const router = createRouter({
     {
       path: '/write-brewnote',
       name: 'write-brewnote',
-      component: WriteBrewNoteView
+      component: WriteBrewNote
+    },
+    {
+      path: '/view-brewnote',
+      name: 'view-brewnote',
+      component: BrewNoteView
     }
   ]
 })

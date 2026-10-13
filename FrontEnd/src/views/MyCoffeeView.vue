@@ -49,7 +49,7 @@
                 <td>--</td>
             </tr>
         </table>
-        <a href="" class= "forward-link">View brewing notes</a>
+        <RouterLink to="/view-brewnote" class="forward-link">View brewnote(s)</RouterLink>
     </article>
 </section>
   </main>
