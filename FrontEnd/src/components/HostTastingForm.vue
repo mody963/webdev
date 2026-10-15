@@ -2,9 +2,11 @@
 import { ref, watch } from 'vue'
 import type { Tasting } from '../types/Tasting'
 
+// watcher op prop zorgt voor dat data wordt ingevuld voor je / if empty dan leeg.
 const props = defineProps<{
   editingTasting?: Tasting | null
 }>()
+
 
 const emit = defineEmits<{
   add: [title: string, host: string, dateTime: string, capacity: number, lineup: string]
@@ -12,6 +14,7 @@ const emit = defineEmits<{
   cancel: []
 }>()
 
+// V-model voor alles formuliervelden altijd perfect gesynchroniseerd met de variabelen
 const title = ref('')
 const host = ref('Mo')
 const dateTime = ref('')
@@ -50,6 +53,7 @@ function handleSubmit() {
     return
   }
 
+  // (Props Down, Events Up) emits roepen de update en add functies aan
   if (props.editingTasting) {
     emit('update', {
       ...props.editingTasting,

@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import HostTastingForm from '../components/HostTastingForm.vue'
+import TastingCard from '../components/TastingCard.vue'
 import { useTastings } from '../composables/useTastings'
 import type { Tasting } from '../types/Tasting'
 
@@ -57,9 +58,6 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
 <template>
   <div>
     <header>
-      <p>
-        <RouterLink to="/" class="back-link">&larr; Back to Main Menu</RouterLink>
-      </p>
       <h1>Coffee Tastings</h1>
     </header>
     <p class="intro">Taste line-ups blind in the back room and help decide what beans the club re-orders!</p>
@@ -75,7 +73,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
       <RouterLink to="/host-tasting" class="button-primary">+ Host New Tasting</RouterLink>
       <hr>
     </div>
-    
+
     <!-- User Feedback Banner -->
     <p v-if="feedback" class="card card--highlight" style="font-weight: bold;">
       {{ feedback }}
@@ -94,7 +92,8 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
     <!-- Host banner link (only when not editing) -->
     <div v-else class="card card--highlight">
       <h4>Lead a Cupping</h4>
-      <p>Every member who knows the beans can book the back room, pick a line-up of 4 to 5 coffees, and lead a blind session.</p>
+      <p>Every member who knows the beans can book the back room, pick a line-up of 4 to 5 coffees, and lead a blind
+        session.</p>
       <RouterLink to="/host-tasting" class="button-primary">+ Host a New Tasting &rarr;</RouterLink>
     </div>
 
@@ -107,44 +106,10 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
         <p>No tastings scheduled yet.</p>
       </div>
 
-      <div v-for="tasting in tastings" :key="tasting.id" class="card" style="margin-top: 1rem; background-color: var(--color-surface);">
-        <header>
-          <h3>{{ tasting.title }}</h3>
-          <p><strong>Host:</strong> {{ tasting.host }} | <strong>Status:</strong> {{ tasting.status }}</p>
-          <p><strong>Date &amp; Time:</strong> {{ tasting.dateTime.replace('T', ' at ') }}</p>
-          <p>
-            <strong>Capacity:</strong> {{ tasting.confirmedAttendees.length }} / {{ tasting.capacity }} seats confirmed
-            <span v-if="tasting.waitingList.length > 0">({{ tasting.waitingList.length }} on waiting list)</span>
-          </p>
-          <p><strong>Blind Line-up:</strong> {{ tasting.lineup }}</p>
-        </header>
-
-        <h4>Confirmed Attendees:</h4>
-        <ol>
-          <li v-for="att in tasting.confirmedAttendees" :key="att">{{ att }}</li>
-        </ol>
-
-
-        <div v-if="tasting.waitingList.length > 0">
-          <h4>Waiting List:</h4>
-          <ol :start="tasting.confirmedAttendees.length + 1">
-            <li v-for="w in tasting.waitingList" :key="w">{{ w }}</li>
-          </ol>
-        </div>
-
-        <!-- ACTION BUTTONS: Claim/Waitlist, Edit, Cancel Session -->
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; align-items: center;">
-          <button type="button" class="button-primary" @click="handleClaimSeat(tasting.id)">
-            {{ tasting.confirmedAttendees.length < tasting.capacity ? 'Claim a Seat' : 'Join Waiting List' }}
-          </button>
-          <button type="button" class="button-primary" style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);" @click="startEditing(tasting)">
-            Edit Session
-          </button>
-          <button type="button" class="back-link" style="color: #ff6b6b;" @click="handleDelete(tasting.id, tasting.title)">
-            Cancel Tasting
-          </button>
-        </div>
-      </div>
+      <!-- Hier gebruiken we je nieuwe TastingCard component! -->
+      <TastingCard v-for="tasting in tastings" :key="tasting.id" :tasting="tasting" @claim-seat="handleClaimSeat"
+        @edit="startEditing" @delete="handleDelete($event, tasting.title)"
+        style="margin-top: 1rem; background-color: var(--color-surface);" />
     </div>
 
     <!-- Summary Table (Past Cupping Verdicts) -->

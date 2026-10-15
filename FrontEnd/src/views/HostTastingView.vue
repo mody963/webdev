@@ -24,9 +24,6 @@ function handleAdd(title: string, host: string, dateTime: string, capacity: numb
 
 <template>
     <header>
-      <p>
-        <RouterLink to="/tastings" class="back-link">&larr; Back to Tastings</RouterLink>
-      </p>
       <h1>Host a Tasting Session</h1>
     </header>
 
