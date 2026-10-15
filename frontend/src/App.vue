@@ -20,7 +20,7 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/the-shelf">The Shelf</RouterLink>
         </li>
         <li>
-          <RouterLink to="/TheGrinderAndTheScales">The Shelf</RouterLink>
+          <RouterLink to="/the-grinder-and-the-scale">The Grinders And The Scales</RouterLink>
         </li>
         <li class="right">
           <RouterLink to="/about">About</RouterLink>

@@ -20,9 +20,9 @@
       </RouterLink>
       <br>
 
-      <a href="#">
-        The grinders and the scales
-      </a>
+      <RouterLink to="/the-grinder-and-the-scale">
+        The Grinders And The Scales
+      </RouterLink>
       <br>
     </p>
   </main>
