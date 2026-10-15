@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCoffeeBag } from '../composables/useCoffeeBags'
 
+
 const { coffeeBags } = useCoffeeBag()
 </script>
 
@@ -20,8 +21,20 @@ const { coffeeBags } = useCoffeeBag()
     </header>
 
     <main>
+        <h2>MENU</h2>
+        
+    <div class="order-box">
+      <h4>Options</h4>
+      <ul>
+        <li><a href="#coffee-bags" class="back-link"> View your coffee</a></li>
+        <li><a href="#bag-transfers" class="back-link">Coffee bag transfers</a></li>
+      </ul>
+      <hr>
+    </div>
       <section>
+        <div id="coffee-bags">
         <h2>Your coffee</h2>
+        </div>
 
         <p v-if="coffeeBags.length === 0">No coffee bags found.</p>
 
@@ -54,6 +67,28 @@ const { coffeeBags } = useCoffeeBag()
           </RouterLink>
         </article>
       </section>
+    <section id="bag-transfers">
+        <h2>Coffee bag transfers</h2>
+
+        <article class="card">
+        <h3>Transfer a bag</h3>
+        <p>Request to send a coffee bag to someone else.</p>
+        <button type="button" class="button-primary">
+        Transfer a bag
+        </button>
+
+        <hr>
+
+        <p>
+            You have 0
+            transfer request.
+        </p>
+
+        <button type="button" class="button-primary">
+        View transfer requests
+        </button>
+        </article>
+    </section>
     </main>
   </div>
 </template>

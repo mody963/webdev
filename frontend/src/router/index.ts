@@ -5,7 +5,6 @@ import GroupOrdersView from '../views/GroupOrdersView.vue'
 import NewGroupOrderView from '../views/NewGroupOrderView.vue'
 import TastingsView from '../views/TastingsView.vue'
 import TheShelfView from '../views/TheShelfView.vue'
-import MyCoffeeView from '@/views/MyCoffeeView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
 import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
@@ -38,11 +37,6 @@ const router = createRouter({
       path: '/the-shelf',
       name: 'the-shelf',
       component: TheShelfView
-    },
-    {
-      path: '/my-bags',
-      name: 'my-bags',
-      component: MyCoffeeView
     },
     {
       path: '/write-brewnote/:bagId',
