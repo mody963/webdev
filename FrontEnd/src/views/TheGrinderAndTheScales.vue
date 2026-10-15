@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useGrinderScaleReservations } from '../composables/useGrinderScale'
 import type { GrinderScale } from '../types/GrindersScale'
 
-const { GrinderScalesReservations, activeCount, addGrinderScale, updateGrinderScale, deleteGrinderScale, } = useGrinderScaleReservations()
+const { GrinderScalesReservations, activeCount, updateGrinderScale, deleteGrinderScale, } = useGrinderScaleReservations()
 
 const editingGrinderScale = ref<GrinderScale | null>(null)
 const feedback = ref<string>('')
@@ -18,8 +18,8 @@ function cancelEdit() {
   editingGrinderScale.value = null
 }
 
-function handleUpdate(updatedTasting: GrinderScale) {
-  updateGrinderScale(updatedTasting)
+function handleUpdate(updatedGrinderScale: GrinderScale) {
+  updateGrinderScale(updatedGrinderScale)
   editingGrinderScale.value = null
   feedback.value = `Reservation was successfully updated!`
 }
