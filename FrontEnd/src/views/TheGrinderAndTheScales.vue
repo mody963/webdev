@@ -71,7 +71,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
       </div>
     </div>
 
-    <RouterLink to="/ReserveGrinderScale" class="button-primary">+ Make Reservation</RouterLink>
+    <RouterLink to="/reserve-grinder-scale" class="button-primary">+ Make Reservation</RouterLink>
 
     <hr>
 
