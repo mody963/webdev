@@ -1,11 +1,11 @@
 :root {
   /* Brand Palette */
-  --color-bg: rgb(52, 21, 15);               /* Dark coffee brown */
+  --color-bg: rgb(52, 21, 15);              /* Dark coffee brown */
   --color-surface: rgba(75, 32, 24, 0.85);  /* Translucent card brown */
   --color-surface-light: rgb(234, 206, 170);/* Cream highlight container */
-  --color-text-light: rgb(234, 206, 170);/* Cream text */
-  --color-text-dark: rgb(52, 21, 15);        /* Dark text for light surfaces */
-  --color-border: rgb(160, 105, 85);       /* Muted line separator */
+  --color-text-light: rgb(234, 206, 170);   /* Cream text */
+  --color-text-dark: rgb(52, 21, 15);       /* Dark text for light surfaces */
+  --color-border: rgb(110, 68, 55);         /* Muted line separator */
 
   /* Typography */
   --font-family-base: 'Courier New', Courier, monospace;
@@ -14,14 +14,11 @@
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
-
-  /* Borders (verandert per schermgrootte) */
-  --border-width: 2px;
 }
 
 body {
   background-color: var(--color-bg);
-  background-image: url('/FrontEnd/src/assets/flow.jpg');
+  background-image: url('flow.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,8 +26,7 @@ body {
   color: var(--color-text-light);
   font-family: var(--font-family-base);
   margin: 0;
-  padding: var(--space-md); /* grootte van de teelfoon */
-  font-size: 14px;
+  padding: var(--space-lg);
   line-height: 1.5;
 }
 
@@ -49,18 +45,18 @@ hr {
   margin: var(--space-lg) 0;
 }
 
+
 .card {
   background-color: var(--color-surface);
-  border: var(--border-width) solid var(--color-border);
+  border: 1px solid var(--color-border);
   padding: var(--space-md);
   border-radius: 6px;
   margin-bottom: var(--space-lg);
 }
-
 .card--highlight {
   background-color: var(--color-surface-light);
   color: var(--color-text-dark);
-  border: var(--border-width) solid var(--color-text-light);
+  border: 1px solid var(--color-text-light);
 }
 
 .card--highlight h2,
@@ -101,9 +97,10 @@ hr {
 .forward-link {
   color: var(--color-text-dark);
   background-color: var(--color-surface-light);
-  padding: 15px 25px;
-  text-decoration: none;
-  display: inline-block;
+  text-decoration: underline;
+    padding: 15px 25px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .form-group {
@@ -124,7 +121,7 @@ hr {
   background-color: #fff;
   color: #000;
   width: 100%;
-  max-width: 100%;/* telefoon: volle breedte */
+  max-width: 320px;
   box-sizing: border-box;
 }
 
@@ -133,8 +130,6 @@ hr {
   border-collapse: collapse;
   margin-top: var(--space-md);
   font-size: 14px;
-  display: block; /* telefoon: horizontaal scrollen */
-  overflow-x: auto;
 }
 
 .data-table th,
@@ -162,61 +157,26 @@ hr {
 }
 
 .nav-bar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column; /* telefoon: onder elkaar */
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(45px);
+width: 100%;
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+position: sticky; top: 0;
+backdrop-filter: blur(10px);
 }
-
 .nav-bar li {
-  list-style-type: none;
+    list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
-
 .nav-bar a {
-  display: block;
-  padding: 15px 25px;
-  text-decoration: none;
-  color: var(--color-text-light);
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: var(--color-text-light);
 }
-
-/* dikte van een telefoon, ipad en een laptop */
-/* het pakt eerst standaard deze en als het deminimale groote heeft van de 600 dan tablet en 1024= computer */
-@media (min-width: 600px) {
-  body {
-    padding: var(--space-lg);
-    font-size: 16px;
-  }
-
-  .form-input {
-    max-width: 320px;
-  }
-
-  .nav-bar {
-    flex-direction: row;
-  }
-
-  .nav-bar .right {
+.nav-bar .right {
     margin-left: auto;
-  }
-}
-@media (min-width: 1024px) {
-  :root {
-    --border-width: 3px;
-  }
-
-  #app {
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .data-table {
-    display: table;                        /* normale tabel terug */
-  }
 }
