@@ -7,14 +7,6 @@ const { coffeeBags } = useCoffeeBag()
 
 <template>
   <div class="page-container">
-    <nav class="nav-bar">
-      <ul class="nav-bar">
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/group-orders">Grouporders</RouterLink></li>
-        <li><RouterLink to="/tastings">Tastings</RouterLink></li>
-      </ul>
-    </nav>
-
     <header>
       <h1>The Shelf</h1>
       <hr>
@@ -22,7 +14,7 @@ const { coffeeBags } = useCoffeeBag()
 
     <main>
         <h2>MENU</h2>
-        
+
     <div class="order-box">
       <h4>Options</h4>
       <ul>

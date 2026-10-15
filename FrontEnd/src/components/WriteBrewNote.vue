@@ -43,15 +43,6 @@ function handleSubmit() {
 
 <template>
     <div class="page-container">
-    <nav class = "nav-bar" >
-    <ul class = "nav-bar">
-    <li><RouterLink to="/">Home</RouterLink></li>
-    <li><RouterLink to="/group-orders">Grouporders</RouterLink></li>
-    <li><RouterLink to="/tastings">tastings</RouterLink></li>
-    <li><RouterLink to="/the-shelf">The Shelf</RouterLink></li>
-    <li class="right"><a href="about.asp">About</a></li>
-    </ul>
-    </nav>
     <header>
     <h1>Write a brew note</h1>
     <hr />
