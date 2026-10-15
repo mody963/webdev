@@ -9,6 +9,7 @@ const { coffeeBags } = useCoffeeBag()
   <div class="page-container">
     <header>
       <h1>The Shelf</h1>
+      <p class="intro">Track your coffee bags, share beans with club members, and discover your best brews!</p>
       <hr>
     </header>
 
@@ -83,12 +84,14 @@ const { coffeeBags } = useCoffeeBag()
     </section>
     </main>
   </div>
+  <hr>
+    <p class="footer-text">The Shelf &copy; the club</p>
 </template>
 
 <style scoped>
 .page-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

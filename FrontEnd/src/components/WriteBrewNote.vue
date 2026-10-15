@@ -100,6 +100,8 @@ function handleSubmit() {
     </section>    
   </main>
   </div>
+  <hr>
+    <p class="footer-text">The Shelf &copy; the club</p>
 </template>
 
 <style scoped>

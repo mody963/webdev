@@ -87,9 +87,6 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
 <template>
   <div class="page-container">
     <header>
-      <p>
-        <RouterLink to="/" class="back-link">&larr; Back to Main Menu</RouterLink>
-      </p>
       <h1>Group Orders</h1>
     </header>
  
