@@ -6,7 +6,7 @@ import { useTastings } from '../composables/useTastings'
 import type { Tasting } from '../types/Tasting'
 
 // Track which session is being edited (Lesson 4 pattern)
-const { tastings, activeCount, updateTasting, deleteTasting, registerMember } = useTastings()
+const { tastings, activeTastings, completedTastings, activeCount, updateTasting, deleteTasting, registerMember, getWinningBean } = useTastings()
 
 const editingTasting = ref<Tasting | null>(null)
 const feedback = ref<string>('')
@@ -107,7 +107,12 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
         <p>No tastings scheduled yet.</p>
       </div>
 
-      <div v-for="tasting in tastings" :key="tasting.id" class="card" style="margin-top: 1rem; background-color: var(--color-surface);">
+      <div v-for="tasting in activeTastings" 
+        :key="tasting.id" 
+        class="card"
+        style="margin-top: 1rem; background-color: var(--color-surface);"
+      >
+
         <header>
           <h3>{{ tasting.title }}</h3>
           <p><strong>Host:</strong> {{ tasting.host }} | <strong>Status:</strong> {{ tasting.status }}</p>
@@ -137,6 +142,15 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
           <button type="button" class="button-primary" @click="handleClaimSeat(tasting.id)">
             {{ tasting.confirmedAttendees.length < tasting.capacity ? 'Claim a Seat' : 'Join Waiting List' }}
           </button>
+           <RouterLink 
+            to="/cupping-room" 
+            class="button-primary"
+            style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-text-light);"
+          >
+            Enter Cupping Room &rarr;
+          </RouterLink>
+
+
           <button type="button" class="button-primary" style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);" @click="startEditing(tasting)">
             Edit Session
           </button>
@@ -147,10 +161,11 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
       </div>
     </div>
 
-    <!-- Summary Table (Past Cupping Verdicts) -->
+        <!-- Summary Table (Past Cupping Verdicts) -->
     <div id="past-verdicts" class="card">
       <h4>Past Cupping Verdicts</h4>
       <p>Calculated average scores decide what the club buys next in Group Orders.</p>
+
       <table class="data-table">
         <thead>
           <tr>
@@ -162,17 +177,20 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Thermal Shock vs Washed</td>
-            <td>Mo</td>
-            <td>Milky Cake (Dak)</td>
-            <td>8.8 / 10</td>
-            <td><strong>Yes (Placed)</strong></td>
+          <tr v-if="completedTastings.length === 0">
+            <td colspan="5">No completed tastings yet.</td>
+          </tr>
+          <tr v-for="tasting in completedTastings" :key="tasting.id">
+            <td>{{ tasting.title }}</td>
+            <td>{{ tasting.host }}</td>
+            <td>{{ getWinningBean(tasting).name }}</td>
+            <td><strong>{{ getWinningBean(tasting).score }}</strong></td>
+            <td>{{ parseFloat(getWinningBean(tasting).score) >= 8.0 ? 'Yes (Recommend)' : 'No' }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <hr>
-    <p class="footer-text">Coffee Tastings &copy; the club</p>
   </div>
+
+
 </template>

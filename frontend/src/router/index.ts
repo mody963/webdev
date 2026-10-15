@@ -9,6 +9,7 @@ import MyCoffeeView from '@/views/MyCoffeeView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
 import BrewNoteView from '@/views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
+import CuppingRoomView from '@/views/CuppingRoomView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -57,7 +58,12 @@ const router = createRouter({
     {
       path: '/host-tasting',
       name: 'host-tasting',
-      component: HostTastingView // <-- Add this
+      component: HostTastingView
+    },
+    {
+      path: '/cupping-room',
+      name: 'cupping-room',
+      component: CuppingRoomView 
     }
   ]
 })

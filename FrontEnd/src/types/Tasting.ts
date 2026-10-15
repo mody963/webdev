@@ -1,3 +1,11 @@
+export interface CuppingScore {
+  id: number
+  memberName: string
+  position: number
+  score: number
+  remark: string
+}
+
 export interface Tasting {
   id: number
   title: string
@@ -7,5 +15,6 @@ export interface Tasting {
   lineup: string
   confirmedAttendees: string[]
   waitingList: string[]
-  status: 'active' | 'cancelled'
+  scores: CuppingScore[]
+  status: 'active' | 'completed'
 }
