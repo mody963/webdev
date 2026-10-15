@@ -61,10 +61,10 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
 
         <!-- ACTION BUTTONS: Claim/Waitlist, Edit, Cancel Session -->
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; align-items: center;">
-          <button type="button" class="button-primary" style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);" @click="startEditing(tasting)">
+          <button type="button" class="button-primary" style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);" @click="startEditing(GrinderScale)">
             Edit reservation
           </button>
-          <button type="button" class="back-link" style="color: #ff6b6b;" @click="handleDelete(tasting.id, tasting.title)">
+          <button type="button" class="back-link" style="color: #ff6b6b;" @click="handleDelete(GrinderScale.id, GrinderScale.grinderScale)">
             Cancel reservation
           </button>
         </div>

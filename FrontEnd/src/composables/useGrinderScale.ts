@@ -12,11 +12,13 @@ export function useGrinderScaleReservations() {
     GrinderScalesReservations.value = [
       {
         id: 1,
-        grinderScale: "Grinder 1"
+        grinderScale: "Grinder 1",
+        status: "active"
       },
       {
         id: 2,
-        grinderScale: "Grinder 2"
+        grinderScale: "Grinder 2",
+        status: "active"
       }
     ]
   }
