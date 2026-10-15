@@ -59,6 +59,11 @@ const router = createRouter({
       path: '/the-grinder-and-the-scale',
       name: 'The Grinders And The Scales',
       component: TheGrinderAndTheScales
+    },
+    {
+      path: '/reserve-grinder-scale',
+      name: 'reserve grinder scale',
+      component: ReserveGrinderScale
     }
   ]
 })
