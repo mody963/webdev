@@ -19,6 +19,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <li>
           <RouterLink to="/the-shelf">The Shelf</RouterLink>
         </li>
+        <li>
+          <RouterLink to="/TheGrinderAndTheScales">The Shelf</RouterLink>
+        </li>
         <li class="right">
           <RouterLink to="/about">About</RouterLink>
         </li>
