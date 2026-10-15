@@ -8,41 +8,41 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   add: [grinderScale: string]
-  update: [tasting: GrinderScale]
+  update: [GrinderScale: GrinderScale]
   cancel: []
 }>()
 
-const grinderScale = ref('')
+const new_GrinderScale = ref('')
 const formError = ref('')
 
 watch(
-  () => props.editingTasting,
-  (grinderscale) => {
+  () => props.editingGrinderScale,
+  (grinder) => {
     formError.value = ''
-    if (grinderscale) {
-      grinderScale.value = grinderScale.title
+    if (grinder) {
+      new_GrinderScale.value = grinder.grinderScale
     } else {
-      grinderScale.value = ''
+      new_GrinderScale.value = ''
     }
   },
   { immediate: true }
 )
 
 function handleSubmit() {
-  if (!grinderScale.value.trim()) {
+  if (!new_GrinderScale.value.trim()) {
     formError.value = 'Please provide a grinder/scale.'
     return
   }
 
-  if (props.editingTasting) {
+  if (props.editingGrinderScale) {
     emit('update', {
-      ...props.editingTasting,
-      grinderScale: grinderScale.value.trim(),
+      ...props.editingGrinderScale,
+      grinderScale: new_GrinderScale.value.trim(),
     })
   } else {
     emit(
       'add',
-      grinderScale.value.trim(),
+      new_GrinderScale.value.trim(),
     )
   }
 }
@@ -54,7 +54,7 @@ function handleSubmit() {
       <label for="grinder-scale">Grinder/Scale:</label>
       <input 
         id="grinder-scale" 
-        v-model="grinderScale" 
+        v-model="new_GrinderScale" 
         type="text" 
         class="form-input" 
         placeholder="Grinder 1" 
@@ -66,11 +66,11 @@ function handleSubmit() {
 
     <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
       <button type="submit" class="button-primary">
-        {{ editingTasting ? 'Save Changes' : '+ Announce Tasting' }}
+        {{ editingGrinderScale ? 'Save Changes' : '+ Announce Tasting' }}
       </button>
 
       <button 
-        v-if="editingTasting" 
+        v-if="editingGrinderScale" 
         type="button" 
         class="back-link" 
         @click="emit('cancel')"
