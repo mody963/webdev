@@ -5,11 +5,12 @@ import GroupOrdersView from '../views/GroupOrdersView.vue'
 import NewGroupOrderView from '../views/NewGroupOrderView.vue'
 import TastingsView from '../views/TastingsView.vue'
 import TheShelfView from '../views/TheShelfView.vue'
-import MyCoffeeView from '@/views/MyCoffeeView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
-import BrewNoteView from '@/views/BrewNoteView.vue'
+import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 import CuppingRoomView from '@/views/CuppingRoomView.vue'
+import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
+import TheGrinderAndTheScales from '@/views/TheGrinderAndTheScales.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -41,19 +42,14 @@ const router = createRouter({
       component: TheShelfView
     },
     {
-      path: '/my-bags',
-      name: 'my-bags',
-      component: MyCoffeeView
-    },
-    {
-      path: '/write-brewnote',
+      path: '/write-brewnote/:bagId',
       name: 'write-brewnote',
       component: WriteBrewNote
     },
     {
-      path: '/view-brewnote',
-      name: 'view-brewnote',
-      component: BrewNoteView
+      path: '/view-brewnote/:bagId',
+      name: 'ViewBrewNotes',
+      component: ViewBrewNote
     },
     {
       path: '/host-tasting',
@@ -64,6 +60,11 @@ const router = createRouter({
       path: '/cupping-room',
       name: 'cupping-room',
       component: CuppingRoomView 
+    },
+    {
+      path: '/the-grinder-and-the-scale',
+      name: 'The Grinders And The Scales',
+      component: TheGrinderAndTheScales
     }
   ]
 })
