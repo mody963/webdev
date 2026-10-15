@@ -2,7 +2,7 @@ import type { CoffeeBag } from '../types/CoffeeBag.ts'
 import { ref, watch } from 'vue'
 
 const coffeeBags = ref<CoffeeBag[]>(
-  JSON.parse(localStorage.getItem('coffeeBag') || '[]')
+  JSON.parse(localStorage.getItem('coffeeBags') || '[]')
 )
 if (coffeeBags.value.length === 0) {
     coffeeBags.value = [
@@ -43,9 +43,17 @@ export function useCoffeeBag() {
       id: Date.now(),
       ...data
     }
-
     coffeeBags.value.push(newCoffeeBag)
   }
+
+  function updateCoffeeBag(updatedBag: CoffeeBag) {
+    const index = coffeeBags.value.findIndex(
+        bag => bag.id === updatedBag.id
+    )
+    if (index !== -1) {
+        coffeeBags.value[index] = updatedBag
+    }
+    }
 
   function deleteCoffeeBag(id: number) {
     coffeeBags.value = coffeeBags.value.filter(
@@ -56,6 +64,7 @@ export function useCoffeeBag() {
   return {
     coffeeBags,
     addCoffeeBag,
+    updateCoffeeBag,
     deleteCoffeeBag
   }
 }

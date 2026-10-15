@@ -7,7 +7,7 @@ import TastingsView from '../views/TastingsView.vue'
 import TheShelfView from '../views/TheShelfView.vue'
 import MyCoffeeView from '@/views/MyCoffeeView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
-import BrewNoteView from '@/views/BrewNoteView.vue'
+import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 
 const router = createRouter({
@@ -50,14 +50,14 @@ const router = createRouter({
       component: WriteBrewNote
     },
     {
-      path: '/view-brewnote',
-      name: 'view-brewnote',
-      component: BrewNoteView
+      path: '/view-brewnote/',
+      name: 'ViewBrewNotes',
+      component: ViewBrewNote
     },
     {
       path: '/host-tasting',
       name: 'host-tasting',
-      component: HostTastingView // <-- Add this
+      component: HostTastingView  
     }
   ]
 })

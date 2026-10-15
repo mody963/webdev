@@ -6,6 +6,7 @@ const { addBrewNote } = useBrewNotes()
 
 const title = ref('')
 const beanName = ref('')
+const roaster = ref('')
 const method = ref('Drip-machine')
 const dose = ref('')
 const grind = ref('')
@@ -27,6 +28,7 @@ function handleSubmit() {
   addBrewNote({
     title: title.value.trim(),
     beanName: beanName.value.trim(),
+    roaster: roaster.value.trim(),
     method: method.value,
     dose: String(dose.value).trim(),
     grind: grind.value.trim(),
@@ -38,6 +40,7 @@ function handleSubmit() {
 
   title.value = ''
   beanName.value = ''
+  roaster.value = ''
   method.value = 'Drip-machine'
   dose.value = ''
   grind.value = ''
@@ -75,6 +78,10 @@ function handleSubmit() {
             <div class="form-group">
                 <label for="Bean">Please enter the bean name:</label>
                 <input v-model="beanName" type="text" id="Bean-name" class="form-input" placeholder="e.g. arabica" required>
+            </div>
+            <div class="form-group">
+                <label for="Roaster">Please enter the roaster:</label>
+                <input v-model="roaster" type="text" id="roaster" class="form-input" placeholder="e.g. Hopper Coffee" required>
             </div>
 
             <div class="form-group">

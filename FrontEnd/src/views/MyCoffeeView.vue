@@ -1,5 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
+import { useCoffeeBag } from '../composables/useCoffeeBags'
 
+const { coffeeBags } = useCoffeeBag()
 </script>
 
 <template>
@@ -20,39 +22,59 @@
     </header>
 
     <main>
-    <section>
+  <section>
     <h2>Bags</h2>
-    <article class="card">
-        <table class="data-table">
-            <tr>
-                <th>Bag holder</th>
-                <td>--</td>
-            </tr>
-            <tr>
-                <th>Roaster</th>
-                <td>--</td>
-            </tr>
-            <tr>
-                <th>Grams</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Day of arrival</th>
-                <td>--</td>
-            </tr>
-            <tr>
-                <th>Bag Freshness</th>
-                <td>--</td>
-            </tr>
-            <tr>
-                <th>Finished</th>
-                <td>--</td>
-            </tr>
-        </table>
-        <RouterLink to="/view-brewnote" class="forward-link">View brewnote(s)</RouterLink>
+
+    <article
+      v-for="bag in coffeeBags"
+      :key="bag.id"
+      class="card"
+    >
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <th>Bag holder</th>
+            <td>{{ bag.owner }}</td>
+          </tr>
+          <tr>
+            <th>Bean</th>
+            <td>{{ bag.bean }}</td>
+          </tr>
+          <tr>
+            <th>Roaster</th>
+            <td>{{ bag.roaster }}</td>
+          </tr>
+          <tr>
+            <th>Grams</th>
+            <td>{{ bag.grams }}</td>
+          </tr>
+          <tr>
+            <th>Day of arrival</th>
+            <td>{{ bag.dayOfArival }}</td>
+          </tr>
+          <tr>
+            <th>Bag freshness</th>
+            <td>{{ bag.bagFreshness }}</td>
+          </tr>
+          <tr>
+            <th>Finished</th>
+            <td>{{ bag.finished ? 'Yes' : 'No' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    <RouterLink
+    :to="{
+        name: 'ViewBrewNotes',
+        query: { beanName: bag.bean, roaster: bag.roaster }
+    }"
+    class="forward-link"
+>
+  View brewnote(s)
+</RouterLink>
     </article>
-</section>
-  </main>
+  </section>
+</main>
   </div>
 </template>
 
