@@ -1,82 +1,46 @@
-
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useBrewNotes } from '../composables/useBrewNote'
+import { useCoffeeBag } from '../composables/useCoffeeBags'
 
+const route = useRoute()
 const { brewNotes } = useBrewNotes()
+const { coffeeBags } = useCoffeeBag()
 
-const selectedBean = ref('')
-
-const beanNames = computed(() => {
-  return [...new Set(
-    brewNotes.value.map(note => note.beanName)
-  )].sort()
-})
 
 const filteredNotes = computed(() => {
-  if (!selectedBean.value) {
-    return brewNotes.value
-  }
-
-  return brewNotes.value.filter(
-    note => note.beanName === selectedBean.value
-  )
+  const bagId = String(route.params.bagId ?? '')
+  return brewNotes.value.filter(note => String(note.coffeeBag) === bagId)
 })
+
+function getBeanName(bagId: number) {
+  return coffeeBags.value.find(bag => String(bag.id) === String(bagId))?.bean
+    ?? 'Unknown bean'
+}
 </script>
 
 <template>
-  <div class="page-container">
-    <header>
-      <h1>Brew notes</h1>
-      <hr />
-    </header>
+  <header>
+    <h1>Brew notes</h1>
+    <hr />
+  </header>
+  <main>
 
-    <main>
-      <label for="bean-filter">Filter by bean:</label>
+    <p v-if="filteredNotes.length === 0">
+      No brew notes for this coffee bag yet.
+    </p>
 
-      <select
-        id="bean-filter"
-        v-model="selectedBean"
-        class="form-input"
-      >
-        <option value="">All beans</option>
-        <option
-          v-for="bean in beanNames"
-          :key="bean"
-          :value="bean"
-        >
-          {{ bean }}
-        </option>
-      </select>
-
-      <p v-if="filteredNotes.length === 0">
-        No brew notes found.
-      </p>
-
-      <section
-        v-for="note in filteredNotes"
-        :key="note.id"
-        class="brew-note"
-      >
-      <article class="card">
-        <table class="data-table">
-        <h2>{{ note.title }}</h2>
-        <p><strong>Bean:</strong> {{ note.beanName }}</p>
-        <p><strong>Method:</strong> {{ note.method }}</p>
-        <p><strong>Dose:</strong> {{ note.dose }} g</p>
-        <p><strong>Grind:</strong> {{ note.grind }}</p>
-        <p><strong>Result:</strong> {{ note.result }}</p>
-        </table>
-      </article>
-      </section>
-    </main>
-  </div>
+    <article
+      v-for="note in filteredNotes"
+      :key="note.id"
+      class="card"
+    >
+      <h2>{{ note.title }}</h2>
+      <p>Bean: {{ getBeanName(note.coffeeBag) }}</p>
+      <p>Method: {{ note.method }}</p>
+      <p>Dose: {{ note.dose }}</p>
+      <p>Result: {{ note.result }}</p>
+    </article>
+  </main>
 </template>
-
-<style scoped>
-.page-container {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-}
-</style>

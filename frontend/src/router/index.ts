@@ -5,9 +5,8 @@ import GroupOrdersView from '../views/GroupOrdersView.vue'
 import NewGroupOrderView from '../views/NewGroupOrderView.vue'
 import TastingsView from '../views/TastingsView.vue'
 import TheShelfView from '../views/TheShelfView.vue'
-import MyCoffeeView from '@/views/MyCoffeeView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
-import BrewNoteView from '@/views/BrewNoteView.vue'
+import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 
 const router = createRouter({
@@ -40,24 +39,19 @@ const router = createRouter({
       component: TheShelfView
     },
     {
-      path: '/my-bags',
-      name: 'my-bags',
-      component: MyCoffeeView
-    },
-    {
-      path: '/write-brewnote',
+      path: '/write-brewnote/:bagId',
       name: 'write-brewnote',
       component: WriteBrewNote
     },
     {
-      path: '/view-brewnote',
-      name: 'view-brewnote',
-      component: BrewNoteView
+      path: '/view-brewnote/:bagId',
+      name: 'ViewBrewNotes',
+      component: ViewBrewNote
     },
     {
       path: '/host-tasting',
       name: 'host-tasting',
-      component: HostTastingView // <-- Add this
+      component: HostTastingView  
     }
   ]
 })

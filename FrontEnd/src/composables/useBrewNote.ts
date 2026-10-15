@@ -1,16 +1,5 @@
-
+import type { BrewNote } from '../types/Brewnote.ts'
 import { ref, watch } from 'vue'
-
-
-export interface BrewNote {
-  id: number
-  title: string
-  beanName: string
-  method: string
-  dose: string
-  grind: string
-  result: string
-}
 
 const brewNotes = ref<BrewNote[]>(
   JSON.parse(localStorage.getItem('brewNotes') || '[]')
