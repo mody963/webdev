@@ -9,6 +9,7 @@ import WriteBrewNote from '@/components/WriteBrewNote.vue'
 import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 import TheGrinderAndTheScales from '@/views/TheGrinderAndTheScales.vue'
+import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
 
 const router = createRouter({
   history: createWebHistory(),
