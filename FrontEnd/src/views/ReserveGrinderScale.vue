@@ -17,7 +17,7 @@ function handleAdd(grinderScale: string) {
 
   // Redirect terug naar het overzicht na 1 seconde
   setTimeout(() => {
-    router.push('/TheGrindersAndTheScales')
+    router.push('/the-grinder-and-the-scale')
   }, 1000)
 }
 </script>
@@ -25,7 +25,7 @@ function handleAdd(grinderScale: string) {
 <template>
     <header>
       <p>
-        <RouterLink to="/TheGrindersAndTheScales" class="back-link">&larr; Back to The Grinders and The Scales</RouterLink>
+        <RouterLink to="/the-grinder-and-the-scale" class="back-link">&larr; Back to The Grinders and The Scales</RouterLink>
       </p>
       <h1>Make a reservation</h1>
     </header>
