@@ -8,6 +8,7 @@ import TheShelfView from '../views/TheShelfView.vue'
 import WriteBrewNote from '@/components/WriteBrewNote.vue'
 import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
+import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
 import TheGrinderAndTheScales from '@/views/TheGrinderAndTheScales.vue'
 
 const router = createRouter({
