@@ -68,9 +68,10 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
             Cancel reservation
           </button>
         </div>
-        <RouterLink to="/host-tasting" class="button-primary">+ Make Reservation</RouterLink>
       </div>
     </div>
+
+    <RouterLink to="/ReserveGrinderScale" class="button-primary">+ Make Reservation</RouterLink>
 
     <hr>
 
