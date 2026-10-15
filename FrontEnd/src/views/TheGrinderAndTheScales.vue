@@ -1,93 +1,75 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useGrinderScaleReservations } from '../composables/useGrinderScale'
+import type { GrinderScale } from '../types/GrindersScale'
 
-const GrinderScale = ref<string>('')
-const formError = ref<string>('')
+const { GrinderScalesReservations, activeCount, addGrinderScale, updateGrinderScale, deleteGrinderScale, } = useGrinderScaleReservations()
+
+const editingGrinderScale = ref<GrinderScale | null>(null)
 const feedback = ref<string>('')
 
-function handleSubmit() {
-    formError.value = ''
-    feedback.value = ''
-
-    if (!GrinderScale.value) {
-        formError.value = 'Please select a grinder/scale.'
-        return
-    }
-
-    const newOrder = {
-        GrinderScale: GrinderScale.value,
-    }
-
-    const storedOrders = localStorage.getItem('Reservation')
-
-    const Reservation = storedOrders
-        ? JSON.parse(storedOrders)
-        : []
-
-    Reservation.push(newOrder)
-
-    localStorage.setItem(
-        'Reservation',
-        JSON.stringify(Reservation)
-    )
-
-    feedback.value = 'Successfully reserved!'
-
-    GrinderScale.value = ''
+function startEditing(tasting: GrinderScale) {
+  editingGrinderScale.value = tasting
+  feedback.value = ''
+  window.scrollTo({ top: 250, behavior: 'smooth' })
 }
+
+function cancelEdit() {
+  editingGrinderScale.value = null
+}
+
+function handleUpdate(updatedTasting: GrinderScale) {
+  updateGrinderScale(updatedTasting)
+  editingGrinderScale.value = null
+  feedback.value = `Reservation was successfully updated!`
+}
+
+function handleDelete(id: number, title: string) {
+  const confirmed = confirm(`Are you sure you want to cancel "${title}"?`)
+  if (!confirmed) return
+
+  if (editingGrinderScale.value?.id === id) {
+    cancelEdit()
+  }
+  deleteGrinderScale(id)
+  feedback.value = `Tasting "${title}" was cancelled.`
+}
+
+// Lesson 3: Keyboard shortcut to cancel edit mode
+function handleKeyPress(e: KeyboardEvent) {
+  if (e.key === 'Escape' && editingGrinderScale.value !== null) {
+    cancelEdit()
+  }
+}
+
+onMounted(() => document.addEventListener('keydown', handleKeyPress))
+onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
 </script>
 
 <template>
-    <header>
-        <p>
-            <a href="/TheGrindersAndTheScales" class="back-link">
-                &larr; Back to Main Page
-            </a>
-        </p>
+    <div id="active-sessions" class="card">
+      <h4>All reservations</h4>
 
-        <h1>Start New Reservation</h1>
-    </header>
+      <div v-if="GrinderScalesReservations.length === 0">
+        <p>No tastings scheduled yet.</p>
+      </div>
 
-    <p class="intro">
-        Reserve your grinder/scale and make some coffee!
-    </p>
+      <div v-for="GrinderScale in GrinderScalesReservations" :key="GrinderScale.id" class="card" style="margin-top: 1rem; background-color: var(--color-surface);">
+        <header>
+          <h3>{{ GrinderScale.grinderScale }}</h3>
+        </header>
 
-    <hr>
-
-    <div class="card">
-        <h2>New Reservation</h2>
-
-        <form @submit.prevent="handleSubmit">
-            <div class="form-group">
-                <label for="Grinder/scale">Grinder/Scale</label>
-
-                <select
-                    id="Grinder/Scale"
-                    v-model="GrinderScale"
-                    class="form-input"
-                    required
-                >
-                    <option value="">-- Select a grinder/scale --</option>
-                    <option value="Grinder 1">Grinder 1</option>
-                    <option value="Grinder 2">Grinder 2</option>
-                    <option value="Grinder 3">Grinder 3</option>
-                    <option value="Scale 1">Scale 1</option>
-                    <option value="Scale 2">Scale 2</option>
-                </select>
-            </div>
-
-            <p v-if="formError" class="form-error">
-                {{ formError }}
-            </p>
-
-            <p v-if="feedback" class="card card--highlight">
-                {{ feedback }}
-            </p>
-
-            <button type="submit" class="button-primary">
-                + Reserve Grinder/Scale
-            </button>
-        </form>
+        <!-- ACTION BUTTONS: Claim/Waitlist, Edit, Cancel Session -->
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; align-items: center;">
+          <button type="button" class="button-primary" style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);" @click="startEditing(tasting)">
+            Edit reservation
+          </button>
+          <button type="button" class="back-link" style="color: #ff6b6b;" @click="handleDelete(tasting.id, tasting.title)">
+            Cancel reservation
+          </button>
+        </div>
+        <RouterLink to="/host-tasting" class="button-primary">+ Make Reservation</RouterLink>
+      </div>
     </div>
 
     <hr>
