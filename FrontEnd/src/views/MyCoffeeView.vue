@@ -63,15 +63,21 @@ const { coffeeBags } = useCoffeeBag()
         </tbody>
       </table>
 
+    
     <RouterLink
-    :to="{
-        name: 'ViewBrewNotes',
-        query: { beanName: bag.bean, roaster: bag.roaster }
-    }"
-    class="forward-link"
->
-  View brewnote(s)
-</RouterLink>
+        type="button" 
+        class="button-primary"
+    :to="{ name: 'ViewBrewNotes', params: { bagId: bag.id } }">
+    View brew notes
+    </RouterLink>
+    
+    <RouterLink
+    type="button" 
+    class="button-primary"
+    style="background-color: transparent; border: 1px solid var(--color-surface-light); color: var(--color-surface-light);"
+        :to="{ name: 'write-brewnote', params: { bagId: bag.id } }">
+        Write a brew note
+    </RouterLink>
     </article>
   </section>
 </main>

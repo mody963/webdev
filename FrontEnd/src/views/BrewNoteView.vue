@@ -2,19 +2,22 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBrewNotes } from '../composables/useBrewNote'
+import { useCoffeeBag } from '../composables/useCoffeeBags'
 
 const route = useRoute()
 const { brewNotes } = useBrewNotes()
+const { coffeeBags } = useCoffeeBag()
 
 
 const filteredNotes = computed(() => {
-  const beanName = String(route.query.beanName ?? '')
-  const roaster = String(route.query.roaster ?? '')
-
-  return brewNotes.value.filter(
-    note => note.beanName === beanName && note.roaster === roaster
-  )
+  const bagId = String(route.params.bagId ?? '')
+  return brewNotes.value.filter(note => String(note.coffeeBag) === bagId)
 })
+
+function getBeanName(bagId: number) {
+  return coffeeBags.value.find(bag => String(bag.id) === String(bagId))?.bean
+    ?? 'Unknown bean'
+}
 </script>
 
 <template>
@@ -34,7 +37,7 @@ const filteredNotes = computed(() => {
       class="card"
     >
       <h2>{{ note.title }}</h2>
-      <p>Bean: {{ note.beanName }}</p>
+      <p>Bean: {{ getBeanName(note.coffeeBag) }}</p>
       <p>Method: {{ note.method }}</p>
       <p>Dose: {{ note.dose }}</p>
       <p>Result: {{ note.result }}</p>

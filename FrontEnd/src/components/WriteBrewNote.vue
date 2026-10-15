@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useBrewNotes } from '../composables/useBrewNote'
 
+const route = useRoute()
 const { addBrewNote } = useBrewNotes()
 
 const title = ref('')
-const beanName = ref('')
-const roaster = ref('')
 const method = ref('Drip-machine')
 const dose = ref('')
 const grind = ref('')
@@ -15,32 +15,25 @@ const noteError = ref('')
 const feedback = ref('')
 
 function handleSubmit() {
-  if (!title.value.trim()) {
-    noteError.value = 'Please provide a title.'
-    return
-  }
+  const coffeeBagId = Number(route.params.bagId)
 
-  if (!beanName.value.trim()) {
-    noteError.value = 'Please enter a bean name.'
+  if (!Number.isInteger(coffeeBagId)) {
+    noteError.value = 'No valid coffee bag was selected.'
     return
   }
 
   addBrewNote({
+    coffeeBag: coffeeBagId,
     title: title.value.trim(),
-    beanName: beanName.value.trim(),
-    roaster: roaster.value.trim(),
     method: method.value,
     dose: String(dose.value).trim(),
     grind: grind.value.trim(),
-    result: result.value.trim()
+    result: result.value.trim(),
   })
 
-  feedback.value = 'Brew note saved successfully!'
   noteError.value = ''
-
+  feedback.value = 'Brew note saved successfully!'
   title.value = ''
-  beanName.value = ''
-  roaster.value = ''
   method.value = 'Drip-machine'
   dose.value = ''
   grind.value = ''
@@ -73,15 +66,6 @@ function handleSubmit() {
             <div class="form-group">
                 <label for="brewnote-title">Title:</label>
                 <input v-model="title" type="text" id="brewnote-title" class="form-input" placeholder="e.g. Sweet & fruity (french press)" required>
-            </div>
-
-            <div class="form-group">
-                <label for="Bean">Please enter the bean name:</label>
-                <input v-model="beanName" type="text" id="Bean-name" class="form-input" placeholder="e.g. arabica" required>
-            </div>
-            <div class="form-group">
-                <label for="Roaster">Please enter the roaster:</label>
-                <input v-model="roaster" type="text" id="roaster" class="form-input" placeholder="e.g. Hopper Coffee" required>
             </div>
 
             <div class="form-group">

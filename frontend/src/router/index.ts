@@ -45,12 +45,12 @@ const router = createRouter({
       component: MyCoffeeView
     },
     {
-      path: '/write-brewnote',
+      path: '/write-brewnote/:bagId',
       name: 'write-brewnote',
       component: WriteBrewNote
     },
     {
-      path: '/view-brewnote/',
+      path: '/view-brewnote/:bagId',
       name: 'ViewBrewNotes',
       component: ViewBrewNote
     },
