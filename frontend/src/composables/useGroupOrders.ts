@@ -2,12 +2,14 @@ import { ref, computed, watch } from 'vue'
 import type { GroupOrder } from '../types/GroupOrders'
  
 export function useGroupOrders() {
+
+  // READ
   // Load initial state from localStorage
   const orders = ref<GroupOrder[]>(
-    JSON.parse(localStorage.getItem('zetsel_group_orders') || '[]')
-  )
+    JSON.parse(localStorage.getItem('zetsel_group_orders') || '[]') 
+  ) // lezen uit de local storage zo niet lege lijst
  
-  // Seed orders on first visit
+  // orders die al aangemaakt zijn
   if (orders.value.length === 0) {
     orders.value = [
       {
@@ -37,7 +39,7 @@ export function useGroupOrders() {
     ]
   }
  
-  // sync every change naar de  localStorage
+  // sync every change naar de  localStorage als er veranderingen zijn. 
   watch(
     orders,
     (latest) => {
@@ -46,6 +48,7 @@ export function useGroupOrders() {
     { deep: true }
   )
  
+  // beide bijgehouden vanuit de lijst zodra er een verandering is
   const openOrders = computed(() => orders.value.filter(o => o.status === 'open'))
   const closedOrders = computed(() => orders.value.filter(o => o.status === 'closed'))
  
@@ -65,7 +68,7 @@ export function useGroupOrders() {
       status: 'open'
     }
     orders.value.unshift(newOrder)
-  }
+  } // alleen de meegeleverde data aangepast door user word veranderd. 
  
   // UPDATE
   function updateOrder(updatedOrder: GroupOrder) {
@@ -73,12 +76,12 @@ export function useGroupOrders() {
     if (index !== -1) {
       orders.value[index] = updatedOrder
     }
-  }
+  } // zoeken order zelfde id en dan vervangen.
  
   // DELETE
   function deleteOrder(id: number) {
     orders.value = orders.value.filter(o => o.id !== id)
-  }
+  } // filtert order zonder desbetref id 
  
   // Join an open order. Returns false if joining was niett possible
   function joinOrder(orderId: number, memberName: string): boolean {
