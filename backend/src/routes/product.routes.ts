@@ -1,7 +1,7 @@
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { showProducts, showAddProductPage, handleAddProductPage} from "../controller/product.controller.js"
+import { showProducts, showAddProductPage, handleAddProductPage} from "../controllers/product.controller.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
