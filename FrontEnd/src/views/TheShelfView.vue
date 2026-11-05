@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { useCoffeeBag } from '../composables/useCoffeeBags'
+import { useBagTransfers } from '../composables/useBagTransfers'
+
+const { incomingTransfers } = useBagTransfers()
 
 const { myBags } = useCoffeeBag()
 </script>
@@ -65,20 +68,19 @@ const { myBags } = useCoffeeBag()
         <article class="card">
         <h3>Transfer a bag</h3>
         <p>Request to send a coffee bag to someone else.</p>
-        <button type="button" class="button-primary">
+        <RouterLink to="/transfers" class="button-primary">
         Transfer a bag
-        </button>
+        </RouterLink>
 
         <hr>
 
         <p>
-            You have 0
-            transfer request.
+          You have {{ incomingTransfers.length }} pending transfer requests.
         </p>
 
-        <button type="button" class="button-primary">
-        View transfer requests
-        </button>
+        <RouterLink to="/transfers" class="button-primary">
+          View transfer requests
+        </RouterLink>
         </article>
     </section>
     </main>

@@ -10,6 +10,8 @@ import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 import TheGrinderAndTheScales from '@/views/TheGrinderAndTheScales.vue'
 import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
+import TransferBag from '@/views/TransferBag.vue'
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -64,6 +66,11 @@ const router = createRouter({
       path: '/reserve-grinder-scale',
       name: 'reserve grinder scale',
       component: ReserveGrinderScale
+    },
+    {
+      path: '/transfers',
+      name: 'Transfer-Coffee-Bag',
+      component: TransferBag
     }
   ]
 })
