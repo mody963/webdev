@@ -1,5 +1,5 @@
 import { ref, computed, watch } from 'vue'
-import type { Tasting } from '../types/Tasting'
+import type { CuppingScore, Tasting } from '../types/Tasting'
 
 export function useTastings() {
   // Lesson 3: Load initial state from localStorage or use defaults
@@ -19,6 +19,7 @@ export function useTastings() {
         lineup: 'Geisha, Worka, Chelbesa, Finca Betulia',
         confirmedAttendees: ['Mo (Host)', 'Aimee', 'Daan', 'Fernando', 'Lars', 'Sofia'],
         waitingList: ['Kavita (10:15)', 'Bram (11:40)'],
+        scores: [],
         status: 'active'
       },
       {
@@ -30,7 +31,8 @@ export function useTastings() {
         lineup: 'Worka Sakaro, Chelbesa',
         confirmedAttendees: ['Elena (Host)', 'Thijs', 'Sara'],
         waitingList: [],
-        status: 'active'
+        scores: [],
+        status: 'completed'
       }
     ]
   }
@@ -45,6 +47,8 @@ export function useTastings() {
   )
 
   // Lesson 2: Computed derived state
+  const activeTastings = computed(() => tastings.value.filter(t => t.status === 'active'))
+  const completedTastings = computed(() => tastings.value.filter(t => t.status === 'completed'))
   const activeCount = computed(() => {
     return tastings.value.filter(t => t.status === 'active').length
   })
@@ -57,6 +61,7 @@ export function useTastings() {
       ...tastingData,
       confirmedAttendees: [`${tastingData.host} (Host)`],
       waitingList: [],
+      scores: [],
       status: 'active'
     }
     tastings.value.unshift(newTasting)
@@ -71,6 +76,11 @@ export function useTastings() {
 
   function deleteTasting(id: number) {
     tastings.value = tastings.value.filter(t => t.id !== id)
+  }
+  // closing sessions
+  function completeTasting(id: number) {
+    const session = tastings.value.find(t => t.id === id)
+    if (session) session.status = 'completed'
   }
 
   // Case rule: If space exists -> confirmed seat. If full -> waitlist
@@ -89,12 +99,62 @@ export function useTastings() {
     }
   }
 
-  return {
+  // Rule: Calculate average dynamically
+  function getAverageScore(session: Tasting, position: number): string {
+    // Safety check in case scores is undefined on old data
+    if (!session.scores) return 'Pending...' 
+    
+    const scores = session.scores.filter(s => s.position === position)
+    if (scores.length === 0) return 'Pending...'
+    
+    const total = scores.reduce((sum, s) => sum + s.score, 0)
+    return (total / scores.length).toFixed(1) + ' / 10'
+  }
+
+  // Rule: Only add score if member is confirmed
+    function addScore(tastingId: number, score: CuppingScore) {
+    const session = tastings.value.find(t => t.id === tastingId)
+    if (!session) return
+    // Safety check
+    if (!session.scores) session.scores = [] 
+    
+    if (session && session.confirmedAttendees.includes(score.memberName)) {
+      session.scores.push(score)
+    }
+  }
+  function getWinningBean(session: Tasting) {
+    if (!session.scores || session.scores.length === 0) return { name: 'No scores', score: '-' }
+    
+    const lineupArray = session.lineup.split(',').map(b => b.trim()).filter(Boolean)
+    let bestScore = 0
+    let bestBean = 'None'
+
+    for (let i = 0; i < lineupArray.length; i++) {
+      const pos = i + 1
+      const posScores = session.scores.filter(s => s.position === pos)
+      if (posScores.length > 0) {
+        const avg = posScores.reduce((sum, s) => sum + s.score, 0) / posScores.length
+        if (avg > bestScore) {
+          bestScore = avg
+          bestBean = lineupArray[i] || 'Unknown'
+        }
+      }
+    }
+    return { name: bestBean, score: bestScore > 0 ? `${bestScore.toFixed(1)} / 10` : '-' }
+  }
+
+   return {
     tastings,
+    activeTastings,
+    completedTastings,
     activeCount,
     addTasting,
     updateTasting,
     deleteTasting,
-    registerMember
+    completeTasting,
+    registerMember,
+    addScore,
+    getAverageScore,
+    getWinningBean
   }
 }
