@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tastings</title>
+</head>
+<body>
+    <h1>Coffee Club Tastings</h1>
+    <a href="/add-tasting">Host a new Tasting</a>
+    <hr>
+    
+    <% tastings.forEach(tasting => { %>
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+            <h3><%= tasting.title %></h3>
+            <p><strong>Host:</strong> <%= tasting.host %></p>
+            <p><strong>Capacity:</strong> <%= tasting.capacity %> seats</p>
+            <p><strong>Lineup:</strong> <%= tasting.lineup %></p>
+        </div>
+    <% }) %>
+    
+    <% if (tastings.length === 0) { %>
+        <p>No tastings scheduled yet.</p>
+    <% } %>
+</body>
+</html>

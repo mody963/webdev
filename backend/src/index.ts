@@ -1,14 +1,30 @@
 // src/index.ts
 import express from "express";
 import type { Request, Response, NextFunction } from 'express';
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import homeRouter from "./routes/home.routes.js";
 import tastingRouter from "./routes/tastings.routes.js";
 import grinderRouter from "./routes/grinder.routes.js";
 import groupordersRouter from "./routes/grouporders.routes.js";
 import shelfRouter from "./routes/shelf.routes.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = 3000;
+
+// Set EJS as the view engine[span_2](start_span)[span_2](end_span)
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+// Middleware to parse POST request bodies[span_3](start_span)[span_3](end_span)
+app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   console.log(`Request: ${req.method} ${req.url}`);

@@ -1,16 +1,13 @@
-// src/routes/tastings.routes.ts
 import express from "express";
-import type { Request, Response } from 'express';
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { showTastings, showAddTastingPage, handleAddTasting } from "../controllers/tasting.controller.js";
 
 const router = express.Router();
 
-router.get("/tastings", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "..", "views", "tastings.html"));
-});
+// Route to appropriate controller functions
+router.get("/tastings", showTastings);
+router.get("/add-tasting", showAddTastingPage);
+router.post("/add-tasting", handleAddTasting);
 
 export default router;
+
+

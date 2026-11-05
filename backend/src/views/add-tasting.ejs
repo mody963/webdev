@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host a Tasting</title>
+</head>
+<body>
+    <h1>Host a new Tasting Session</h1>
+    <a href="/tastings">Back to Tastings</a>
+    <hr>
+
+    <% if (message) { %>
+        <p style="color: green; font-weight: bold;"><%= message %></p>
+    <% } %>
+
+    <form action="/add-tasting" method="post">
+        <div>
+            <label>Title:</label><br>
+            <input type="text" name="title" required>
+        </div>
+        <br>
+        <div>
+            <label>Host:</label><br>
+            <input type="text" name="host" required>
+        </div>
+        <br>
+        <div>
+            <label>Capacity:</label><br>
+            <input type="number" name="capacity" required>
+        </div>
+        <br>
+        <div>
+            <label>Lineup (Beans):</label><br>
+            <input type="text" name="lineup" required>
+        </div>
+        <br>
+        <button type="submit">Announce Tasting</button>
+    </form>
+</body>
+</html>
