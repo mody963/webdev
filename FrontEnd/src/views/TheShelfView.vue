@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useCoffeeBag } from '../composables/useCoffeeBags'
 
-
-const { coffeeBags } = useCoffeeBag()
+const { myBags } = useCoffeeBag()
 </script>
 
 <template>
@@ -29,12 +28,12 @@ const { coffeeBags } = useCoffeeBag()
         <h2>Your coffee</h2>
         </div>
 
-        <p v-if="coffeeBags.length === 0">No coffee bags found.</p>
+        <p v-if="myBags.length === 0">No coffee bags found.</p>
 
-        <article v-for="bag in coffeeBags" :key="bag.id" class="card">
+        <article v-for="bag in myBags" :key="bag.id" class="card">
           <table class="data-table">
             <tbody>
-              <tr><th>Bag holder</th><td>{{ bag.owner }}</td></tr>
+              <tr><th>Bag holder</th><td>{{ bag.owner.name }}</td></tr>
               <tr><th>Bean</th><td>{{ bag.bean }}</td></tr>
               <tr><th>Roaster</th><td>{{ bag.roaster }}</td></tr>
               <tr><th>Grams</th><td>{{ bag.grams }}</td></tr>

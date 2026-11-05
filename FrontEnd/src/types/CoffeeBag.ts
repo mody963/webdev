@@ -1,6 +1,8 @@
+import type { User } from "./User"
+
 export interface CoffeeBag {
   id: number
-  owner: string
+  owner: User
   bean: string
   roaster: string
   grams: string
