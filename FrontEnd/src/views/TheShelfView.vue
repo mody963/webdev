@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useCoffeeBag } from '../composables/useCoffeeBags'
+import { useBagTransfers } from '../composables/useBagTransfers'
 
+const { incomingTransfers } = useBagTransfers()
 
-const { coffeeBags } = useCoffeeBag()
+const { myBags } = useCoffeeBag()
 </script>
 
 <template>
@@ -29,12 +31,12 @@ const { coffeeBags } = useCoffeeBag()
         <h2>Your coffee</h2>
         </div>
 
-        <p v-if="coffeeBags.length === 0">No coffee bags found.</p>
+        <p v-if="myBags.length === 0">No coffee bags found.</p>
 
-        <article v-for="bag in coffeeBags" :key="bag.id" class="card">
+        <article v-for="bag in myBags" :key="bag.id" class="card">
           <table class="data-table">
             <tbody>
-              <tr><th>Bag holder</th><td>{{ bag.owner }}</td></tr>
+              <tr><th>Bag holder</th><td>{{ bag.owner.name }}</td></tr>
               <tr><th>Bean</th><td>{{ bag.bean }}</td></tr>
               <tr><th>Roaster</th><td>{{ bag.roaster }}</td></tr>
               <tr><th>Grams</th><td>{{ bag.grams }}</td></tr>
@@ -66,20 +68,19 @@ const { coffeeBags } = useCoffeeBag()
         <article class="card">
         <h3>Transfer a bag</h3>
         <p>Request to send a coffee bag to someone else.</p>
-        <button type="button" class="button-primary">
+        <RouterLink to="/transfers" class="button-primary">
         Transfer a bag
-        </button>
+        </RouterLink>
 
         <hr>
 
         <p>
-            You have 0
-            transfer request.
+          You have {{ incomingTransfers.length }} pending transfer requests.
         </p>
 
-        <button type="button" class="button-primary">
-        View transfer requests
-        </button>
+        <RouterLink to="/transfers" class="button-primary">
+          View transfer requests
+        </RouterLink>
         </article>
     </section>
     </main>
