@@ -4,6 +4,7 @@ import {
     getAllCoffeeBags,
     addCoffeeBag
 } from '../models/CoffeeBag.js';
+import { getUserById } from '../models/User.js';
 
 function showCoffeeBags(req: Request, res: Response) {
     res.json(getAllCoffeeBags());
@@ -23,9 +24,14 @@ function showCoffeeBag(req: Request, res: Response) {
 
 function handleAddCoffeeBag(req: Request, res: Response) {
     const data = req.body;
+    const owner = getUserById(Number(data.ownerId));
+
+    if (!owner) {
+        return res.status(400).json({ message: "A valid ownerId is required" });
+    }
     
     const bag = new CoffeeBag(
-        data.owner,
+        owner,
         data.bean,
         data.roaster,
         Number(data.grams),

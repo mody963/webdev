@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shelf</title>
+</head>
+<body>
+    <h1>The Shelf</h1>
+
+    <form method="get" action="/shelf">
+        <label for="userId">Current demo user:</label>
+        <select id="userId" name="userId" onchange="this.form.submit()">
+            <% users.forEach(user => { %>
+                <option value="<%= user.id %>" <%= user.id === currentUser.id ? "selected" : "" %>>
+                    <%= user.name %>
+                </option>
+            <% }) %>
+        </select>
+    </form>
+
+    <hr>
+
+    <!-- Coffee bags -->
+    <h2>Coffee Bags</h2>
+
+    <% coffeeBags.forEach(bag => { %>
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+            <p><strong>Owner:</strong> <%= bag.owner.name %></p>
+            <p><strong>Bean:</strong> <%= bag.bean %></p>
+            <p><strong>Roaster:</strong> <%= bag.roaster %></p>
+            <p><strong>Grams:</strong> <%= bag.grams %>g</p>
+            <p><strong>Freshness:</strong> <%= bag.bagFreshness %></p>
+            <p><strong>Finished:</strong> <%= bag.finished ? "Yes" : "No" %></p>
+        </div>
+    <% }) %>
+
+    <% if (coffeeBags.length === 0) { %>
+        <p>No coffee bags available.</p>
+    <% } %>
+
+    <hr>
+
+    <!-- Pending transfers -->
+    <h2>Transfer Requests</h2>
+
+    <p>
+        <strong>Pending requests:</strong>
+        <%= pendingTransferCount %>
+    </p>
+
+    <h3>Send a coffee bag</h3>
+    <form method="post" action="/shelf/transfers">
+        <input type="hidden" name="senderId" value="<%= currentUser.id %>">
+
+        <label for="bagId">Your bag:</label>
+        <select id="bagId" name="bagId" required>
+            <% coffeeBags.filter(bag => bag.owner.id === currentUser.id).forEach(bag => { %>
+                <option value="<%= bag.id %>"><%= bag.bean %> - <%= bag.roaster %></option>
+            <% }) %>
+        </select>
+
+        <label for="recipientId">Recipient:</label>
+        <select id="recipientId" name="recipientId" required>
+            <% users.filter(user => user.id !== currentUser.id).forEach(user => { %>
+                <option value="<%= user.id %>"><%= user.name %></option>
+            <% }) %>
+        </select>
+
+        <button type="submit">Send transfer request</button>
+    </form>
+
+    <!-- Incoming requests -->
+    <h3>Incoming Requests</h3>
+
+    <% incomingRequests.forEach(request => { %>
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+
+            <p><strong>Sender:</strong> <%= request.sender.name %></p>
+            <p><strong>Coffee bean:</strong> <%= request.bag.bean %></p>
+            <p><strong>Roaster:</strong> <%= request.bag.roaster %></p>
+            <p><strong>Amount:</strong> <%= request.bag.grams %>g</p>
+
+            <button onclick="updateTransfer(<%= request.id %>, 'accept')">
+                Accept
+            </button>
+
+            <button onclick="updateTransfer(<%= request.id %>, 'decline')">
+                Decline
+            </button>
+
+        </div>
+    <% }) %>
+
+    <% if (incomingRequests.length === 0) { %>
+        <p>You have no incoming transfer requests.</p>
+    <% } %>
+
+    <script>
+        async function updateTransfer(id, action) {
+            const response = await fetch(`/shelf/transfers/${id}/${action}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ userId: '<%= currentUser.id %>' })
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Could not update transfer request.');
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -38,7 +38,7 @@ app.use(homeRouter);
 app.use(tastingRouter);      // http://localhost:3000/tastings
 app.use(grinderRouter);      // http://localhost:3000/grinder
 app.use(groupordersRouter);  // http://localhost:3000/grouporder
-app.use(shelfRouter);        // http://localhost:3000/shelf
+app.use("/shelf", shelfRouter); // http://localhost:3000/shelf
 
 // 404 Fallback
 app.use((req: Request, res: Response) => {

@@ -1,6 +1,8 @@
 import { User } from "./User.js";
+let nextCoffeeBagId = 1;
+
 class CoffeeBag {
-    id!: number
+    id: number
     owner: User
     bean: string
     roaster: string
@@ -10,6 +12,7 @@ class CoffeeBag {
     finished: boolean
 
     constructor(o: User, b: string,r: string, g: number, doa: string, bf: string, f: boolean) {
+        this.id = nextCoffeeBagId++;
         this.owner = o;
         this.bean = b;
         this.roaster = r;

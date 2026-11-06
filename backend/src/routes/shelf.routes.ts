@@ -2,10 +2,7 @@ import express from "express";
 
 import { showShelf } from "../controllers/theshelf.controller.js";
 
-import {
-    showCoffeeBags,
-    handleAddCoffeeBag
-} from "../controllers/coffeeBag.controller.js";
+import { showCoffeeBags, handleDeleteCoffeeBag } from "../controllers/coffeebag.controller.js";
 
 import {
     showTransfers,
@@ -21,7 +18,7 @@ router.get("/", showShelf);
 
 // Coffee bags
 router.get("/bags", showCoffeeBags);
-router.post("/bags", handleAddCoffeeBag);
+router.delete("/bags/:id", handleDeleteCoffeeBag);
 
 // Transfers
 router.get("/transfers", showTransfers);
