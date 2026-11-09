@@ -1,18 +1,11 @@
 import express from "express";
-import type { Request, Response } from 'express';
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { showGroupOrders, showAddGroupOrderPage, handleAddGroupOrder } from "../controllers/groupOrder.controller.js";
 
 const router = express.Router();
 
+// Route to appropriate controller functions
+router.get("/grouporder", showGroupOrders);
+router.get("/add-grouporder", showAddGroupOrderPage);
+router.post("/add-grouporder", handleAddGroupOrder);
 
-router.get("/grouporder", (req: Request, res: Response) => {
-res.sendFile(path.join(__dirname, "..", "views", "grouporder.html"))
-});
-
-
-
-export default router
+export default router;
