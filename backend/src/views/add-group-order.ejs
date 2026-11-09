@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a Group Order</title>
+</head>
+<body>
+    <h1>Start a new Group Order</h1>
+    <a href="/grouporder">Back to Group Orders</a>
+    <hr>
+
+    <% if (message) { %>
+        <p style="color: green; font-weight: bold;"><%= message %></p>
+    <% } %>
+
+    <form action="/add-grouporder" method="post">
+        <div>
+            <label>Order ID:</label><br>
+            <input type="number" name="id" required>
+        </div>
+        <br>
+        <div>
+            <label>Bean ID:</label><br>
+            <input type="number" name="beanId" required>
+        </div>
+        <br>
+        <div>
+            <label>Starter ID:</label><br>
+            <input type="number" name="starterId" required>
+        </div>
+        <br>
+        <div>
+            <label>Minimum Grams:</label><br>
+            <input type="number" name="minimumGrams" min="1" required>
+        </div>
+        <br>
+        <div>
+            <label>Closing Date:</label><br>
+            <input type="date" name="closingDate" required>
+        </div>
+        <br>
+        <button type="submit">Create Group Order</button>
+    </form>
+</body>
+</html>

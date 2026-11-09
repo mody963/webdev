@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Group Orders</title>
+</head>
+<body>
+    <h1>Coffee Club Group Orders</h1>
+    <a href="/add-grouporder">Start a new Group Order</a>
+    <hr>
+
+    <% groupOrders.forEach(order => { %>
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+            <h3>Group Order #<%= order.id %></h3>
+            <p><strong>Bean ID:</strong> <%= order.beanId %></p>
+            <p><strong>Starter ID:</strong> <%= order.starterId %></p>
+            <p><strong>Minimum Grams:</strong> <%= order.minimumGrams %> grams</p>
+            <p><strong>Closing Date:</strong> <%= order.closingDate %></p>
+            <p><strong>Status:</strong> <%= order.status %></p>
+        </div>
+    <% }) %>
+
+    <% if (groupOrders.length === 0) { %>
+        <p>No group orders available yet.</p>
+    <% } %>
+</body>
+</html>
