@@ -9,7 +9,7 @@ import WriteBrewNote from '@/components/WriteBrewNote.vue'
 import ViewBrewNote from '../views/BrewNoteView.vue'
 import HostTastingView from '../views/HostTastingView.vue'
 import CuppingRoomView from '@/views/CuppingRoomView.vue'
-import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
+import ReserveGrinderScaleView from '@/views/ReserveGrinderScaleView.vue'
 import TheGrinderAndTheScales from '@/views/TheGrinderAndTheScales.vue'
 import TransferBag from '@/views/TransferBag.vue'
 
@@ -71,7 +71,7 @@ const router = createRouter({
     {
       path: '/reserve-grinder-scale',
       name: 'reserve grinder scale',
-      component: ReserveGrinderScale
+      component: ReserveGrinderScaleView
     },
     {
       path: '/transfers',

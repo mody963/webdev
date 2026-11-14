@@ -2,14 +2,16 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useGrinderScaleReservations } from '../composables/useGrinderScale'
 import type { GrinderScale } from '../types/GrindersScale'
+import ReserveGrinderScaleView from './ReserveGrinderScaleView.vue'
+import ReserveGrinderScale from '@/components/ReserveGrinderScale.vue'
 
 const { GrinderScalesReservations, activeCount, updateGrinderScale, deleteGrinderScale, } = useGrinderScaleReservations()
 
 const editingGrinderScale = ref<GrinderScale | null>(null)
 const feedback = ref<string>('')
 
-function startEditing(tasting: GrinderScale) {
-  editingGrinderScale.value = tasting
+function startEditing(grinderscale: GrinderScale) {
+  editingGrinderScale.value = grinderscale
   feedback.value = ''
   window.scrollTo({ top: 250, behavior: 'smooth' })
 }
@@ -47,6 +49,21 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
 </script>
 
 <template>
+    <!-- User Feedback Banner -->
+    <p v-if="feedback" class="card card--highlight" style="font-weight: bold;">
+      {{ feedback }}
+    </p>
+
+    <!-- INLINE EDITING MODAL / FORM (Only visible when actively editing a tasting) -->
+    <div v-if="editingGrinderScale" class="card" style="border: 2px solid var(--color-surface-light);">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0;">Editing: {{ editingGrinderScale.grinderScale }}</h3>
+        <small>Tip: Press <kbd>Escape</kbd> to cancel</small>
+      </div>
+      <hr>
+      <ReserveGrinderScale :editingGrinderScale="editingGrinderScale" @update="handleUpdate" @cancel="cancelEdit" />
+    </div>
+    
     <div id="active-sessions" class="card">
       <h4>All reservations</h4>
 
