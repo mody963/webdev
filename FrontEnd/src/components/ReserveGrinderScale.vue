@@ -66,7 +66,7 @@ function handleSubmit() {
 
     <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
       <button type="submit" class="button-primary">
-        {{ editingGrinderScale ? 'Save Changes' : '+ Announce Tasting' }}
+        {{ editingGrinderScale ? 'Save Changes' : '+ Make Reservation' }}
       </button>
 
       <button 

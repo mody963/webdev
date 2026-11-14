@@ -51,7 +51,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeyPress))
       <h4>All reservations</h4>
 
       <div v-if="GrinderScalesReservations.length === 0">
-        <p>No tastings scheduled yet.</p>
+        <p>No reservations yet.</p>
       </div>
 
       <div v-for="GrinderScale in GrinderScalesReservations" :key="GrinderScale.id" class="card" style="margin-top: 1rem; background-color: var(--color-surface);">
