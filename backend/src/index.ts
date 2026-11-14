@@ -17,11 +17,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// Set EJS as the view engine[span_2](start_span)[span_2](end_span)
+// Set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Middleware to parse POST request bodies[span_3](start_span)[span_3](end_span)
+// Middleware to parse POST request bodies
 app.use(express.urlencoded({ extended: true }));
 
 
