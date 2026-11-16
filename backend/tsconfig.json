@@ -32,6 +32,9 @@
     "forceConsistentCasingInFileNames": true,
     // Recommended Options
     "strict": true,
+    "experimentalDecorators": true, // experimentalDecorators: zorgt ervoor dat TypeScript decorators zoals @Entity() en @Column() ondersteunt.
+    "emitDecoratorMetadata": true, // emitDecoratorMetadata: zorgt ervoor dat TypeScript extra type-informatie beschikbaar maakt die TypeORM kan gebruiken.
+    "jsx": "react-jsx",
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,

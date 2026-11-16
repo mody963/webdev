@@ -50,7 +50,22 @@ app.listen(PORT, () => {
 });
 
 
+// om te zorgen dat je de verbinding met sqlite opent, wordt daarna uitegvoerd als verbinding is gelukt en met de express gekoppelt  vangt ook evt fouten op
+/*
+import { AppDataSource } from "./data-source.js";
 
+AppDataSource.initialize()
+    .then(() => {
+        console.log("Database connected");
+
+        app.listen(PORT, () => {
+            console.log(`Server running at http://localhost:${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error("Database connection failed:", error);
+    });
+*/
 
 //            VOORBEELD
 
