@@ -1,17 +1,13 @@
 import express from "express";
-import type { Request, Response } from 'express';
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { showReservations, showAddReservation, handleAddReservation } from "../controllers/grinderScale.controller.js";
 
 const router = express.Router();
 
+// Route to appropriate controller functions
+router.get("/reservations", showReservations);
+router.get("/add-reservation", showAddReservation);
+router.post("/add-reservation", handleAddReservation);
 
-router.get("/grinder", (req: Request, res: Response) => {
-res.sendFile(path.join(__dirname, "..", "views", "grinderandscales.html"))
-});
+export default router;
 
 
-export default router

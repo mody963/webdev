@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resersve a grinder/scale</title>
+</head>
+<body>
+    <h1>Resersve a grinder/scale</h1>
+    <a href="/grinderandscales">Back to grinders and scales</a>
+    <hr>
+
+    <% if (message) { %>
+        <p style="color: green; font-weight: bold;"><%= message %></p>
+    <% } %>
+
+    <form action="/add-reservation" method="post">
+        <div>
+            <label>Grinder/Scale:</label><br>
+            <input type="text" name="grinderScale" required>
+        </div>
+        <br>
+        <button type="submit">Make reservation</button>
+    </form>
+</body>
+</html>
