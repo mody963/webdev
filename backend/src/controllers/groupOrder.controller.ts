@@ -13,6 +13,23 @@ function showAddGroupOrderPage(req: Request, res: Response) {
 
 function handleAddGroupOrder(req: Request, res: Response) {
     const data = req.body;
+    // onderdeel stap 7 voeg of gegevens geldig zijn voor database structuur. 
+    const beanId = Number(data.beanId);
+    const starterId = Number(data.starterId);
+    const minimumGrams = Number(data.minimumGrams);
+
+    if (
+        !Number.isInteger(beanId) ||
+        beanId <= 0 ||
+        !Number.isInteger(starterId) ||
+        starterId <= 0 ||
+        !Number.isInteger(minimumGrams) ||
+        minimumGrams <= 0 ||
+        !data.closingDate
+    ) {
+        res.status(400).send("Invalid group order data");
+        return;
+    }
 
     // Create en add the new group order
     addGroupOrder(new GroupOrder(
