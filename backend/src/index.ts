@@ -45,6 +45,17 @@ app.use((req: Request, res: Response) => {
   res.status(404).send("<h1>404 - Page Not Found</h1>");
 });
 
+// Global error handling van de mmiddleware
+// Als er ergens iets fout gaat, komt de fout hier terecht.
+// We laten de fout zien in de terminal, zodat we weten wat misging.
+// Daarna vertellen we de gebruiker dat er iets fout is gegaan.
+// Als de fout geen eigen foutcode heeft, gebruiken we code 500.
+app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
+    console.error("Error:", err);
+    res.status(err.status || 500).send(err.message || "Internal Server Error");
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
