@@ -26,8 +26,13 @@
         </div>
         <br>
         <div>
-            <label>Capacity:</label><br>
-            <input type="number" name="capacity" required>
+            <label>Date &amp; Time:</label><br>
+            <input type="datetime-local" name="dateTime" required>
+        </div>
+        <br>
+        <div>
+            <label>Capacity (2–12 seats):</label><br>
+            <input type="number" name="capacity" min="2" max="12" required>
         </div>
         <br>
         <div>

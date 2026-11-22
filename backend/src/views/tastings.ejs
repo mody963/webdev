@@ -14,8 +14,21 @@
         <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
             <h3><%= tasting.title %></h3>
             <p><strong>Host:</strong> <%= tasting.host %></p>
+            <p><strong>Date &amp; Time:</strong> <%= tasting.dateTime %></p>
             <p><strong>Capacity:</strong> <%= tasting.capacity %> seats</p>
             <p><strong>Lineup:</strong> <%= tasting.lineup %></p>
+
+            <% if (tasting.scores && tasting.scores.length > 0) { %>
+                <h4>Cupping Scores:</h4>
+                <ul>
+                    <% tasting.scores.forEach(score => { %>
+                        <li>
+                            <strong><%= score.beanName %>:</strong> <%= score.points %> / 10 
+                            — "<%= score.remark %>" (by <%= score.memberName %>)
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
         </div>
     <% }) %>
     

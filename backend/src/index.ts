@@ -1,4 +1,5 @@
 // src/index.ts
+import "reflect-metadata";
 import express from "express";
 import type { Request, Response, NextFunction } from 'express';
 
@@ -10,6 +11,8 @@ import tastingRouter from "./routes/tastings.routes.js";
 import grinderRouter from "./routes/grinder.routes.js";
 import groupordersRouter from "./routes/grouporders.routes.js";
 import shelfRouter from "./routes/shelf.routes.js";
+import { AppDataSource } from "./data-source.js";
+import { seedTastings } from "./utils/seed.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,61 +59,15 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
-
-
-// om te zorgen dat je de verbinding met sqlite opent, wordt daarna uitegvoerd als verbinding is gelukt en met de express gekoppelt  vangt ook evt fouten op
-/*
-import { AppDataSource } from "./data-source.js";
-
 AppDataSource.initialize()
-    .then(() => {
-        console.log("Database connected");
+  .then(async () => {
+    console.log("Database connected");
+    await seedTastings();
 
-        app.listen(PORT, () => {
-            console.log(`Server running at http://localhost:${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.error("Database connection failed:", error);
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
     });
-*/
-
-//            VOORBEELD
-
-// import express from "express";
-// import homeRouter from "./routes/homeroutes.js"
-// import productRouter from "./routes/product.route.js"
-// import type { Request, Response, NextFunction } from 'express';
-
-// import path from "node:path";
-// import { fileURLToPath } from "node:url";
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
-// const app = express();
-// const PORT = 3000;
-
-// app.set("view engine", "ejs");
-// app.set("views", path.join(__dirname, "views"));
-
-// app.use(express.urlencoded({extended: true}))
-
-// app.use((req: Request, res: Response, next: NextFunction) => {
-// console.log(`Request: ${req.method} ${req.url}`);
-// next(); // without this, the request would stop here
-// })
-
-// app.use(homeRouter)
-// app.use("/shop" , productRouter)
-
-// app.use( (req: Request, res: Response) => {
-// res.status(404).send("404 not found!");
-// });
-
-// app.listen(PORT, () => {
-// console.log(`Server running at http://localhost:${PORT}`);
-// });
+  })
+  .catch((error) => {
+    console.error("Database connection failed:", error);
+  });
