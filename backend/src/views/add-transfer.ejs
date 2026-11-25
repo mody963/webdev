@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Transfer Request</title>
+</head>
+<body>
+    <h1>Create a Transfer Request</h1>
+
+    <a href="/shelf">Back to The Shelf</a>
+
+    <hr>
+
+    <% if (message) { %>
+        <p style="color: green; font-weight: bold;">
+            <%= message %>
+        </p>
+    <% } %>
+
+    <form action="/shelf/add-transfer" method="post">
+
+        <div>
+            <label>Bag ID:</label><br>
+            <input type="number" name="bagId" required>
+        </div>
+        <br>
+
+        <div>
+            <label>Sender ID:</label><br>
+            <input type="number" name="senderId" required>
+        </div>
+        <br>
+
+        <div>
+            <label>Recipient ID:</label><br>
+            <input type="number" name="recipientId" required>
+        </div>
+        <br>
+
+        <button type="submit">Create Transfer Request</button>
+
+    </form>
+</body>
+</html>
