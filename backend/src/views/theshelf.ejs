@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shelf</title>
+</head>
+<body>
+    <h1>The Shelf</h1>
+
+    <a href="/shelf/add-transfer">Create a Transfer Request</a>
+
+    <hr>
+
+    <h2>Coffee Bags</h2>
+
+    <% coffeeBags.forEach(bag => { %>
+
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+            <p><strong>ID:</strong> <%= bag.id %></p>
+            <p><strong>Owner:</strong> <%= bag.owner.name %></p>
+            <p><strong>Bean:</strong> <%= bag.bean %></p>
+            <p><strong>Roaster:</strong> <%= bag.roaster %></p>
+            <p><strong>Grams:</strong> <%= bag.grams %>g</p>
+            <p><strong>Freshness:</strong> <%= bag.bagFreshness %></p>
+            <p><strong>Finished:</strong> <%= bag.finished ? "Yes" : "No" %></p>
+        </div>
+
+    <% }) %>
+
+    <hr>
+
+    <h2>Transfer Requests</h2>
+
+    <% transferRequests.forEach(transfer => { %>
+
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+            <p><strong>Bag ID:</strong> <%= transfer.bagId %></p>
+            <p><strong>Sender ID:</strong> <%= transfer.senderId %></p>
+            <p><strong>Recipient ID:</strong> <%= transfer.recipientId %></p>
+        </div>
+
+    <% }) %>
+
+    <% if (transferRequests.length === 0) { %>
+        <p>No transfer requests yet.</p>
+    <% } %>
+
+</body>
+</html>

@@ -1,19 +1,20 @@
+import { Router } from 'express';
 
-import express from "express";
-import type { Request, Response } from 'express';
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import {
+    showShelf
+} from '../controllers/theshelf.controller.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import {
+    showAddTransferPage,
+    handleCreateTransfer
+} from '../controllers/transfer.controller.js';
 
-const router = express.Router();
+const router = Router();
 
+router.get('/', showShelf);
 
-router.get("/shelf", (req: Request, res: Response) => {
-res.sendFile(path.join(__dirname, "..", "views", "shelf.html"))
-});
+router.get('/add-transfer', showAddTransferPage);
 
+router.post('/add-transfer', handleCreateTransfer);
 
-
-export default router
+export default router;
