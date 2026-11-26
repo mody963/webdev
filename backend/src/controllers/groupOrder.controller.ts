@@ -11,6 +11,27 @@ async function showGroupOrders(req: Request, res: Response) {
     res.render("group-orders", { groupOrders });
 }
 
+async function showSinglleGroupOrder(req: Request, res: Response)
+{
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id || id <=0))
+    {
+        res.status(400).send("Invalid group order ID");
+        return;
+    }
+
+    const groupOrder = await groupOrderRepository.findOne({where: {id: id}});
+
+    if (!groupOrder)
+    {
+        res.status(404).send("Group order not found")
+        return;
+    }
+
+    res.render("group-order-detail", {groupOrder});
+}
+
 function showAddGroupOrderPage(req: Request, res: Response) {
     res.render("add-group-order", { message: null });
 }
