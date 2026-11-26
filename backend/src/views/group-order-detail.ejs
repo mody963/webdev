@@ -18,6 +18,16 @@
 
     <p><strong>Status:</strong> <%= groupOrder.status %></p>
 
+
+
+    <hr>
+    <h2> Shares</h2>
+
+    <% if (groupOrder.shares && groupOrder.shares.length > 0) { %> <% groupOrder.shares.forEach(share => { %> <p> <strong>Member:</strong> <%= share.member?.name %> <strong>Grams:</strong> <%= share.grams %> </p> <% }) %>
+    <% } else { %> <p>No shares yet.</p> <% } %>
+
+    <h3>Total grams: <%= (groupOrder.shares || []).reduce((total, share) => total + share.grams, 0) %>/<%= groupOrder.minimumGrams %></h3>
+    
     <a href="/grouporder">Back to group orders</a>
 
 </body>
