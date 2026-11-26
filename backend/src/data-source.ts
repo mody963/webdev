@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { Tasting } from "./models/Tasting.js";
 import { GroupOrder } from "./models/GroupOrder.js";
 import { CuppingScore } from "./models/CuppingScore.js";
+import { GrinderScale } from "./models/GrinderScale.js"; 
 
 import { User } from "./models/User.js";
 import { CoffeeBag } from "./models/CoffeeBag.js";
@@ -12,5 +13,5 @@ export const AppDataSource = new DataSource({
   type: "better-sqlite3",
   database: "database.sqlite",
   synchronize: true, // Automatically creates/updates tables during development
-  entities: [Tasting, CuppingScore, GroupOrder, User, CoffeeBag, TransferRequest], // fernando moet nog zijn enteties toevoegen
+  entities: [Tasting, CuppingScore, GroupOrder, User, CoffeeBag, TransferRequest, GrinderScale],
 });
