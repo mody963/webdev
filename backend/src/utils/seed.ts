@@ -2,6 +2,9 @@ import { AppDataSource } from "../data-source.js";
 import { Tasting } from "../models/Tasting.js";
 import { CuppingScore } from "../models/CuppingScore.js";
 
+import { User } from "../models/User.js";
+import { CoffeeBag } from "../models/CoffeeBag.js";
+
 export async function seedTastings() {
   const tastingRepository = AppDataSource.getRepository(Tasting);
   const scoreRepository = AppDataSource.getRepository(CuppingScore);
@@ -28,4 +31,43 @@ export async function seedTastings() {
   await scoreRepository.save(sampleScore);
 
   console.log("Seeded Tastings and CuppingScores");
+}
+
+export async function seedShelf() {
+    const userRepository = AppDataSource.getRepository(User);
+    const coffeeBagRepository = AppDataSource.getRepository(CoffeeBag);
+
+    const count = await userRepository.count();
+    if (count > 0) return; // Already seeded
+
+    // Create users
+    const willem = await userRepository.save({
+        name: "Willem"
+    });
+
+    const sara = await userRepository.save({
+        name: "Sara"
+    });
+
+    // Create coffee bags
+    await coffeeBagRepository.save([
+        {
+            ownerId: willem.id,
+            bean: "Geisha",
+            roaster: "Manhattan Coffee",
+            grams: 250,
+            bagFreshness: "Fresh",
+            finished: false
+        },
+        {
+            ownerId: sara.id,
+            bean: "Bourbon",
+            roaster: "Bocca",
+            grams: 500,
+            bagFreshness: "Fresh",
+            finished: false
+        }
+    ]);
+
+    console.log("Seeded Users and CoffeeBags");
 }

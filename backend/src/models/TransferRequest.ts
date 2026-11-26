@@ -1,32 +1,21 @@
-class TransferRequest {
-    bagId: number;
-    senderId: number;
-    recipientId: number;
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column
+} from "typeorm";
 
-    constructor(
-        bagId: number,
-        senderId: number,
-        recipientId: number
-    ) {
-        this.bagId = bagId;
-        this.senderId = senderId;
-        this.recipientId = recipientId;
-    }
+@Entity()
+export class TransferRequest {
+
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column("integer")
+    bagId!: number;
+
+    @Column("integer")
+    senderId!: number;
+
+    @Column("integer")
+    recipientId!: number;
 }
-
-const transferRequests: TransferRequest[] = [];
-
-function addTransferRequest(transfer: TransferRequest) {
-    transferRequests.push(transfer);
-}
-
-function getAllTransferRequests(): TransferRequest[] {
-    return transferRequests;
-}
-
-export {
-    TransferRequest,
-    transferRequests,
-    addTransferRequest,
-    getAllTransferRequests
-};

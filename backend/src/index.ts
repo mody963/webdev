@@ -14,7 +14,7 @@ import grinderRouter from "./routes/grinder.routes.js";
 import groupordersRouter from "./routes/grouporders.routes.js";
 import shelfRouter from "./routes/shelf.routes.js";
 import { AppDataSource } from "./data-source.js";
-import { seedTastings } from "./utils/seed.js";
+import { seedTastings, seedShelf } from "./utils/seed.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -71,6 +71,7 @@ AppDataSource.initialize()
   .then(async () => {
     console.log("Database connected");
     await seedTastings();
+    await seedShelf();
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
