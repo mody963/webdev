@@ -38,9 +38,9 @@ export async function seedShelf() {
     const coffeeBagRepository = AppDataSource.getRepository(CoffeeBag);
 
     const count = await userRepository.count();
-    if (count > 0) return; // Already seeded
 
-    // Create users
+    if (count > 0) return;
+
     const willem = await userRepository.save({
         name: "Willem"
     });
@@ -49,10 +49,9 @@ export async function seedShelf() {
         name: "Sara"
     });
 
-    // Create coffee bags
     await coffeeBagRepository.save([
         {
-            ownerId: willem.id,
+            owner: willem,
             bean: "Geisha",
             roaster: "Manhattan Coffee",
             grams: 250,
@@ -60,7 +59,7 @@ export async function seedShelf() {
             finished: false
         },
         {
-            ownerId: sara.id,
+            owner: sara,
             bean: "Bourbon",
             roaster: "Bocca",
             grams: 500,
@@ -68,6 +67,4 @@ export async function seedShelf() {
             finished: false
         }
     ]);
-
-    console.log("Seeded Users and CoffeeBags");
 }

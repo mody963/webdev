@@ -2,18 +2,26 @@ import type { Request, Response } from 'express';
 
 import { CoffeeBag } from '../models/CoffeeBag.js';
 import { AppDataSource } from '../data-source.js';
-import { User } from '../models/User.js';
 
-const userRepository = AppDataSource.getRepository(User);
 
 const coffeeBagRepository = AppDataSource.getRepository(CoffeeBag);
 
-
 async function showSingleCoffeeBag(req: Request, res: Response) {
+
     const id = Number(req.params.id);
 
-    const coffeeBag = await coffeeBagRepository.findOneBy({
-        id: id
+    if (!Number.isInteger(id) || id <= 0) {
+        res.status(400).send("Invalid coffee bag ID");
+        return;
+    }
+
+    const coffeeBag = await coffeeBagRepository.findOne({
+        where: {
+            id: id
+        },
+        relations: {
+            owner: true
+        }
     });
 
     if (!coffeeBag) {
@@ -21,13 +29,9 @@ async function showSingleCoffeeBag(req: Request, res: Response) {
         return;
     }
 
-    const owner = await userRepository.findOneBy({
-        id: coffeeBag.ownerId
-    });
-
     res.render("coffeebag", {
         coffeeBag,
-        owner
+        owner: coffeeBag.owner
     });
 }
 
