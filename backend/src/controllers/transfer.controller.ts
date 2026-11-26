@@ -1,22 +1,25 @@
 import type { Request, Response } from 'express';
 
-import {
-    TransferRequest,
-    addTransferRequest
-} from '../models/TransferRequest.js';
+import { TransferRequest } from '../models/TransferRequest.js';
+import { AppDataSource } from '../data-source.js';
+
+const transferRepository =
+    AppDataSource.getRepository(TransferRequest);
 
 function showAddTransferPage(req: Request, res: Response) {
     res.render("add-transfer", { message: null });
 }
 
-function handleCreateTransfer(req: Request, res: Response) {
+async function handleCreateTransfer(req: Request, res: Response) {
     const data = req.body;
 
-    addTransferRequest(new TransferRequest(
-        Number(data.bagId),
-        Number(data.senderId),
-        Number(data.recipientId)
-    ));
+    const transfer = transferRepository.create({
+        bagId: Number(data.bagId),
+        senderId: Number(data.senderId),
+        recipientId: Number(data.recipientId)
+    });
+
+    await transferRepository.save(transfer);
 
     res.render("add-transfer", {
         message: "Transfer request successfully created!"

@@ -1,16 +1,18 @@
 import type { Request, Response } from 'express';
 
-import {
-    getAllCoffeeBags,
-} from '../models/CoffeeBag.js';
+import { CoffeeBag } from '../models/CoffeeBag.js';
+import { AppDataSource } from '../data-source.js';
 
-function showShelf(req: Request, res: Response) {
+const coffeeBagRepository = AppDataSource.getRepository(CoffeeBag);
+
+async function showShelf(req: Request, res: Response) {
+
+    const coffeeBags = await coffeeBagRepository.find();
+
     res.render("theshelf", {
-        coffeeBags: getAllCoffeeBags()
+        coffeeBags
     });
 }
-
-
 
 export {
     showShelf,
