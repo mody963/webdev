@@ -8,7 +8,7 @@ import { User } from "./User.js";
 export class GroupOrderShare{
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
     grams: number;

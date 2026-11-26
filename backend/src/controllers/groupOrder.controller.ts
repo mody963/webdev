@@ -7,7 +7,7 @@ const groupOrderRepository = AppDataSource.getRepository(GroupOrder);
 
 async function showGroupOrders(req: Request, res: Response) {
     // haalt de grouporders op uit de db met .find() beetje t zelfde als SELECT * FROM group_order
-    const groupOrders = await groupOrderRepository.find();
+    const groupOrders = await groupOrderRepository.find({ relations:{shares:{member:true}}});
     res.render("group-orders", { groupOrders });
 }
 
@@ -21,7 +21,7 @@ async function showSinglleGroupOrder(req: Request, res: Response)
         return;
     }
 
-    const groupOrder = await groupOrderRepository.findOne({where: {id: id}});
+    const groupOrder = await groupOrderRepository.findOne({where: {id: id}, relations:{shares:{member:true}}});
 
     if (!groupOrder)
     {
