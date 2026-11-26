@@ -6,7 +6,7 @@ const router = express.Router();
 // Route to appropriate controller functions
 router.get("/grouporder", showGroupOrders);
 router.get("/add-grouporder", showAddGroupOrderPage);
-router.get("/add-grouporder", showSinglleGroupOrder);
+router.get("/grouporder/:id", showSinglleGroupOrder);
 router.post("/add-grouporder", handleAddGroupOrder);
 
 export default router;
