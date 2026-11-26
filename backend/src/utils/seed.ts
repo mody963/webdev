@@ -41,7 +41,7 @@ export async function seedShelf() {
     if (count > 0) return; // Already seeded
 
     // Create users
-    const daan = await userRepository.save({
+    const willem = await userRepository.save({
         name: "Willem"
     });
 
@@ -52,7 +52,7 @@ export async function seedShelf() {
     // Create coffee bags
     await coffeeBagRepository.save([
         {
-            ownerId: daan.id,
+            ownerId: willem.id,
             bean: "Geisha",
             roaster: "Manhattan Coffee",
             grams: 250,

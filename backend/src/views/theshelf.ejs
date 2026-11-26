@@ -25,6 +25,7 @@
             <p><strong>Grams:</strong> <%= bag.grams %>g</p>
             <p><strong>Freshness:</strong> <%= bag.bagFreshness %></p>
             <p><strong>Finished:</strong> <%= bag.finished ? "Yes" : "No" %></p>
+            <a href="/shelf/<%= bag.id %>">View Details</a>
         </div>
 
     <% }) %>
@@ -33,19 +34,32 @@
 
     <h2>Transfer Requests</h2>
 
-    <% transferRequests.forEach(transfer => { %>
+        <% transferRequests.forEach(request => { %>
 
-        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
-            <p><strong>Bag ID:</strong> <%= transfer.bagId %></p>
-            <p><strong>Sender ID:</strong> <%= transfer.senderId %></p>
-            <p><strong>Recipient ID:</strong> <%= transfer.recipientId %></p>
-        </div>
+            <div style="border: 1px solid black;
+                        padding: 1rem;
+                        margin-bottom: 1rem;">
 
-    <% }) %>
+                <p><strong>ID:</strong> <%= request.id %></p>
 
-    <% if (transferRequests.length === 0) { %>
-        <p>No transfer requests yet.</p>
-    <% } %>
+                <p><strong>Bag ID:</strong> <%= request.bagId %></p>
+
+                <p><strong>Sender:</strong> <%= request.senderId %></p>
+
+                <p><strong>Recipient:</strong> <%= request.recipientId %></p>
+
+                <form
+                    action="/shelf/transfer/<%= request.id %>/delete"
+                    method="POST"
+                >
+                    <button type="submit">
+                        Delete Transfer
+                    </button>
+                </form>
+
+            </div>
+
+        <% }) %>
 
 </body>
 </html>

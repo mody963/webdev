@@ -7,7 +7,9 @@ const transferRepository =
     AppDataSource.getRepository(TransferRequest);
 
 function showAddTransferPage(req: Request, res: Response) {
-    res.render("add-transfer", { message: null });
+    res.render("add-transfer", {
+        message: null
+    });
 }
 
 async function handleCreateTransfer(req: Request, res: Response) {
@@ -26,7 +28,26 @@ async function handleCreateTransfer(req: Request, res: Response) {
     });
 }
 
+async function handleDeleteTransfer(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+        res.status(400).send("Invalid transfer ID");
+        return;
+    }
+
+    const result = await transferRepository.delete(id);
+
+    if (result.affected === 0) {
+        res.status(404).send("Transfer request not found");
+        return;
+    }
+
+    res.redirect("/shelf");
+}
+
 export {
     showAddTransferPage,
-    handleCreateTransfer
+    handleCreateTransfer,
+    handleDeleteTransfer
 };

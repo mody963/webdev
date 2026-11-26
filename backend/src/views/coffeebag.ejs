@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Bag</title>
+</head>
+<body>
+
+    <h1>Coffee Bag Details</h1>
+
+    <p><strong>ID:</strong> <%= coffeeBag.id %></p>
+    <p><strong>Owner:</strong> <%= owner?.name ?? "Unknown" %></p>
+    <p><strong>Bean:</strong> <%= coffeeBag.bean %></p>
+    <p><strong>Roaster:</strong> <%= coffeeBag.roaster %></p>
+    <p><strong>Grams:</strong> <%= coffeeBag.grams %>g</p>
+    <p><strong>Freshness:</strong> <%= coffeeBag.bagFreshness %></p>
+    <p><strong>Finished:</strong> <%= coffeeBag.finished %></p>
+
+    <a href="/shelf">Back to shelf</a>
+
+</body>
+</html>
