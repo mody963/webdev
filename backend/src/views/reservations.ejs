@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grinders and Scales</title>
+</head>
+<body>
+
+    <h1>Grinders and Scales</h1>
+
+    <a href="/add-reservation">Make a reservation</a>
+
+    <hr>
+
+    <% reservations.forEach(reservation => { %>
+
+        <div style="border: 1px solid black; padding: 1rem; margin-bottom: 1rem;">
+
+            <h3>Reservation #<%= reservation.id %></h3>
+
+            <p>
+                <strong>Grinder/Scale:</strong>
+                <%= reservation.grinderScale %>
+            </p>
+
+        </div>
+
+    <% }) %>
+
+    <% if (reservations.length === 0) { %>
+        <p>No reservations found.</p>
+    <% } %>
+
+</body>
+</html>
