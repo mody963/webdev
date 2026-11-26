@@ -10,7 +10,7 @@ export class GroupOrderShare{
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column()
+    @Column("integer")
     grams: number;
 
     @ManyToOne(()=> GroupOrder, order => order.shares, {nullable: false})
