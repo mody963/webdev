@@ -1,40 +1,30 @@
-class CoffeeBag {
-    owner: string;
-    bean: string;
-    roaster: string;
-    grams: number;
-    bagFreshness: string;
-    finished: boolean;
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column
+} from "typeorm";
 
-    constructor(
-        owner: string,
-        bean: string,
-        roaster: string,
-        grams: number,
-        bagFreshness: string
-    ) {
-        this.owner = owner;
-        this.bean = bean;
-        this.roaster = roaster;
-        this.grams = grams;
-        this.bagFreshness = bagFreshness;
-        this.finished = false;
-    }
+@Entity()
+export class CoffeeBag {
+
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column("integer")
+    ownerId!: number;
+
+    @Column("text")
+    bean!: string;
+
+    @Column("text")
+    roaster!: string;
+
+    @Column("integer")
+    grams!: number;
+
+    @Column("text")
+    bagFreshness!: string;
+
+    @Column("boolean", { default: false })
+    finished!: boolean;
 }
-
-const coffeeBags: CoffeeBag[] = [];
-
-function addCoffeeBag(bag: CoffeeBag) {
-    coffeeBags.push(bag);
-}
-
-function getAllCoffeeBags(): CoffeeBag[] {
-    return coffeeBags;
-}
-
-export {
-    CoffeeBag,
-    coffeeBags,
-    addCoffeeBag,
-    getAllCoffeeBags
-};
