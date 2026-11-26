@@ -69,4 +69,4 @@ async function handleAddGroupOrder(req: Request, res: Response) {
     res.render("add-group-order", { message: "Group order successfully added!" });
 }
 
-export { showGroupOrders, showAddGroupOrderPage, handleAddGroupOrder };
+export { showGroupOrders, showAddGroupOrderPage, handleAddGroupOrder, showSinglleGroupOrder};
