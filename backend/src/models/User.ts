@@ -1,8 +1,11 @@
 import {
     Entity,
     PrimaryGeneratedColumn,
-    Column
+    Column,
+    OneToMany
 } from "typeorm";
+
+import { CoffeeBag } from "./CoffeeBag.js";
 
 @Entity()
 export class User {
@@ -12,4 +15,7 @@ export class User {
 
     @Column("text")
     name!: string;
+
+    @OneToMany(() => CoffeeBag, (bag) => bag.owner)
+    coffeeBags?: CoffeeBag[];
 }
