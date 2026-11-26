@@ -1,0 +1,46 @@
+### Get all tastings (with scores relation)
+GET http://localhost:3000/api/tastings
+
+### Get single tasting by ID
+GET http://localhost:3000/api/tastings/1
+
+### Get non-existent tasting (expect 404)
+GET http://localhost:3000/api/tastings/9999
+
+### Filter by status query parameter
+GET http://localhost:3000/api/tastings?status=active
+
+### Filter by partial title match (Like operator)
+GET http://localhost:3000/api/tastings?title=Winter
+
+### Create a new tasting (expect 201)
+POST http://localhost:3000/api/tastings
+Content-Type: application/json
+
+{
+  "title": "Ethiopian Natural vs Washed",
+  "host": "Aimee",
+  "dateTime": "2026-12-05T19:30",
+  "capacity": 4,
+  "lineup": "Worka Sakaro, Chelbesa, Sidama Bensa, Guji Uraga"
+}
+
+### Create invalid tasting - capacity out of bounds (expect 400)
+POST http://localhost:3000/api/tastings
+Content-Type: application/json
+
+{
+  "title": "Too Big Cupping",
+  "host": "Mo",
+  "dateTime": "2026-12-10T20:00",
+  "capacity": 20,
+  "lineup": "Geisha"
+}
+
+### Sign up a member for a seat (Zetsel domain rule)
+POST http://localhost:3000/api/tastings/1/signups
+Content-Type: application/json
+
+{
+  "memberName": "Daan"
+}

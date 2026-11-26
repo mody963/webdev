@@ -5,9 +5,11 @@ import type { Request, Response, NextFunction } from 'express';
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import cors from "cors";
 
 import homeRouter from "./routes/home.routes.js";
 import tastingRouter from "./routes/tastings.routes.js";
+import tastingApiRouter from "./routes/api/tastings.routes.js";
 import grinderRouter from "./routes/grinder.routes.js";
 import groupordersRouter from "./routes/grouporders.routes.js";
 import shelfRouter from "./routes/shelf.routes.js";
@@ -25,9 +27,11 @@ const PORT = 3000;
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// Enable CORS before body parsers so Vue (port 5173) can call the API (port 3000)
+app.use(cors());
 // Middleware to parse POST request bodies
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 
 
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -43,6 +47,9 @@ app.use(tastingRouter);      // http://localhost:3000/tastings
 app.use(grinderRouter);      // http://localhost:3000/grinder
 app.use(groupordersRouter);  // http://localhost:3000/grouporder
 app.use("/shelf", shelfRouter); // http://localhost:3000/shelf
+
+// REST API Routes (must come BEFORE the 404 fallback)
+app.use("/api/tastings", tastingApiRouter);
 
 // 404 Fallback
 app.use((req: Request, res: Response) => {
