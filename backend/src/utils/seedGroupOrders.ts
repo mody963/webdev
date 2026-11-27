@@ -54,7 +54,7 @@ async function seedGroupOrders() {
     const share2 = new GroupOrderShare(300);
 
     share2.groupOrder = groupOrder;
-    share2.member = users[1];
+    share2.member = users[1]!;
 
     await shareRepository.save(share2);
 
