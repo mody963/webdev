@@ -22,17 +22,17 @@ export class Tasting {
   lineup: string;
 
   @Column("simple-json")
-  confirmedAttendees: string[];
+  confirmedAttendees: string[];  // ATTENDEES IS EIGENLIJK OOK EEN ENTITY.
 
   @Column("simple-json")
-  waitingList: string[];
+  waitingList: string[]; // IS EIGENLIJK GEWOON EEN ENTITY  VOOR CONFIRMED ATTENDEE EN WAITINGLIST
 
   @Column("text")
-  status: "active" | "completed" | "cancelled";
+  status: "active" | "completed" | "cancelled"; // enum maken inplaats van hardcoded. of model of iets voor validatie.
 
   // Relation: One tasting has many cupping scores
   @OneToMany(() => CuppingScore, (score) => score.tasting)
-  scores?: CuppingScore[] | undefined;
+  scores?: CuppingScore[];
   constructor(
     title: string,
     host: string,
