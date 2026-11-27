@@ -12,6 +12,7 @@ import tastingRouter from "./routes/tastings.routes.js";
 import tastingApiRouter from "./routes/api/tastings.routes.js";
 import grinderRouter from "./routes/grinder.routes.js";
 import groupordersRouter from "./routes/grouporders.routes.js";
+import { seedGroupOrders } from "./utils/seedGroupOrders.js";
 import shelfRouter from "./routes/shelf.routes.js";
 import { AppDataSource } from "./data-source.js";
 import { seedTastings, seedShelf } from "./utils/seed.js";
@@ -72,6 +73,7 @@ AppDataSource.initialize()
     console.log("Database connected");
     await seedTastings();
     await seedShelf();
+    await seedGroupOrders();
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

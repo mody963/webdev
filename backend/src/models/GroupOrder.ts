@@ -1,7 +1,8 @@
 // net zoals mo de database entery temporery aangemaakt
 // DATABASE ENTITY TEMPORARY
 
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { GroupOrderShare } from "./GroupOrderShare.js";
 
 // @entity verteld orm dat de class een database tabel represent
 @Entity()
@@ -26,6 +27,9 @@ export class GroupOrder {
 
     @Column("text")
     status: "open" | "placed" | "failed" | "cancelled";
+
+    @OneToMany(() => GroupOrderShare, share => share.groupOrder)
+    shares?: GroupOrderShare[];
 
     constructor(
         beanId: number,
