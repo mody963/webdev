@@ -1,9 +1,13 @@
-
 import type { Request, Response } from 'express';
 import { AppDataSource } from "../data-source.js";
 import { GroupOrder} from "../models/GroupOrder.js";
+import { User } from "../models/User.js";
+import { GroupOrderShare } from '../models/GroupOrderShare.js';
 
 const groupOrderRepository = AppDataSource.getRepository(GroupOrder);
+const shareRepository = AppDataSource.getRepository(GroupOrderShare);
+
+const userRepository = AppDataSource.getRepository(User);
 
 async function showGroupOrders(req: Request, res: Response) {
     // haalt de grouporders op uit de db met .find() beetje t zelfde als SELECT * FROM group_order
@@ -69,4 +73,73 @@ async function handleAddGroupOrder(req: Request, res: Response) {
     res.render("add-group-order", { message: "Group order successfully added!" });
 }
 
-export { showGroupOrders, showAddGroupOrderPage, handleAddGroupOrder, showSinglleGroupOrder};
+
+async function handleAddShare(req: Request, res: Response) {
+    const orderId = Number(req.params.id);
+    const memberId = Number(req.body.memberId);
+    const grams = Number(req.body.grams);
+
+
+    if (
+        !Number.isInteger(orderId) ||
+        orderId <= 0 ||
+        !Number.isInteger(memberId) ||
+        memberId <= 0 ||
+        !Number.isInteger(grams) ||
+        grams <= 0
+    ) {
+        res.status(400).send("Invalid share data");
+        return;
+    }
+
+    const groupOrder = await groupOrderRepository.findOne({
+        where: { id: orderId }
+    });
+
+    if (!groupOrder) {
+        res.status(404).send("Group order not found");
+        return;
+    }
+
+    const today = new Date().toISOString().split("T")[0]!;
+
+    if (
+        groupOrder.status !== "open" ||
+        groupOrder.closingDate <= today
+    ) {
+        res.status(400).send("Group order is no longer open");
+        return;
+    }
+
+    const member = await userRepository.findOne({
+        where: { id: memberId }
+    });
+
+    if (!member) {
+        res.status(404).send("Member not found");
+        return;
+    }
+
+    let share = await shareRepository.findOne({
+        where: {
+            groupOrder: { id: orderId },
+            member: { id: memberId }
+        }
+    });
+
+    if (share) {
+        share.grams = grams;
+    } else {
+        share = new GroupOrderShare(grams);
+        share.groupOrder = groupOrder;
+        share.member = member;
+    }
+
+    await shareRepository.save(share);
+
+    res.redirect(`/grouporder/${orderId}`);
+}
+
+
+
+export { showGroupOrders, showAddGroupOrderPage, handleAddGroupOrder, showSinglleGroupOrder, handleAddShare};
